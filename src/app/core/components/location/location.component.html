@@ -1,1 +1,11 @@
-<p>location works!</p>
+<mat-form-field appearance="outline">
+  <mat-select [(value)]="selected.value">
+    <mat-select-trigger>
+      <mat-icon aria-hidden="false">place</mat-icon> {{selected.viewValue}}
+    </mat-select-trigger>
+    <mat-option *ngFor="let city of cities" [value]="city.value" (click)="selected = city">
+      <mat-icon aria-hidden="false">place</mat-icon>
+      {{city.viewValue}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

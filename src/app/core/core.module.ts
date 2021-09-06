@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { LocationComponent } from './components/location/location.component';
+import { InfoBlockComponent } from './components/info-block/info-block.component';
 
 @NgModule({
-  declarations: [ContactsComponent, LocationComponent],
+  declarations: [ContactsComponent, LocationComponent, InfoBlockComponent],
   imports: [CommonModule, SharedModule],
-  exports: [ContactsComponent],
+  exports: [InfoBlockComponent],
 })
 export class CoreModule {}
