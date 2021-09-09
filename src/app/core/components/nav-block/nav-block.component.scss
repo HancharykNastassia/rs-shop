@@ -1,0 +1,21 @@
+@import '../../../../variables';
+
+.nav-block {
+  &_container{
+    display: flex;
+    justify-content: space-around;
+  }
+  &_input {
+    &_container {
+      display: flex;
+      align-items: stretch;
+      flex-grow: 0.7;
+    }
+  }
+  &_button{
+    margin: $std-margin;
+    &_container {
+      display: flex;
+    }
+  }
+}
