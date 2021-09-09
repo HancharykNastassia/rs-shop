@@ -1,2 +1,12 @@
+@import '~@angular/material/theming';
+
+$header-bgr: mat-color($mat-gray, 100);
+$white-brg: mat-color($mat-gray, 50);
+
 $min-margin: 5px;
 $std-margin: 10px;
+$big-margin: 20px;
+
+$min-padding: 10px;
+$std-padding: 20px;
+$big-padding: 40px;

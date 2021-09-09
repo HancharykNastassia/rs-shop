@@ -1,0 +1,15 @@
+.info-block{
+  &_container{
+    display: flex;
+    justify-content: space-between;
+    &-right{
+      display: flex;
+      align-items: center;
+    }
+  }
+  &_working{
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+}

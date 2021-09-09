@@ -1,3 +1,20 @@
-.flex-container {
-  display: flex;
+@import "../../../../variables";
+
+.contacts{
+  &-container {
+    display: flex;
+    align-items: stretch;
+    text-align: center;
+  }
+  &_text {
+    margin: $big-margin 0;
+    text-align: center;
+  }
+  &_menue{
+    margin: $std-margin;
+  }
+}
+
+.white-button{
+  background-color: $white-brg;
 }
