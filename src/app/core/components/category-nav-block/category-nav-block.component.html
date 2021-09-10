@@ -1,1 +1,4 @@
-<p>category-nav-block works!</p>
+<button
+*ngFor="let category of (categories$ | async)">
+{{category.name}}
+</button>
