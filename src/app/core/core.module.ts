@@ -6,6 +6,7 @@ import { LocationComponent } from './components/location/location.component';
 import { InfoBlockComponent } from './components/info-block/info-block.component';
 import { NavBlockComponent } from './components/nav-block/nav-block.component';
 import { HeaderComponent } from './pages/header/header.component';
+import { CategoryNavBlockComponent } from './components/category-nav-block/category-nav-block.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { HeaderComponent } from './pages/header/header.component';
     InfoBlockComponent,
     NavBlockComponent,
     HeaderComponent,
+    CategoryNavBlockComponent,
   ],
   imports: [CommonModule, SharedModule],
   exports: [HeaderComponent],
