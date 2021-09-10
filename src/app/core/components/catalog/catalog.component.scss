@@ -1,0 +1,36 @@
+@import "../../../../variables";
+
+*{
+  font-size: 20px;
+  line-height: 32px;
+  color: purple;
+
+  li{
+    padding: $min-padding;
+    margin: $std-margin;
+    border: 1px solid green;
+    border-radius: $std-border-radius;
+  }
+}
+
+.catalog{
+  &-container{
+    display: flex;
+    background-color: $white-brg;
+  }
+  &-cats {
+    width: 30%;
+  }
+  &-subcats {
+    width: 70%;
+  }
+}
+
+.no-dot-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.two-cols {
+  column-count: 2;
+}

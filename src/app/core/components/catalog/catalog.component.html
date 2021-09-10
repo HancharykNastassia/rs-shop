@@ -1,0 +1,15 @@
+<div class="catalog-container">
+  <ul class="catalog-cats no-dot-list">
+    <li *ngFor="let cat of (categories$ | async)"
+    (mouseover)="showSubCategories(cat.id)">
+      {{cat.name}}</li>
+  </ul>
+  <div class="catalog-subcats">
+    <h3>{{getTitle() | async}}</h3>
+    <ul class="two-cols no-dot-list">
+      <li *ngFor="let subCat of (subCategories$ | async)">
+        {{subCat.name}}
+      </li>
+    </ul>
+  </div>
+</div>

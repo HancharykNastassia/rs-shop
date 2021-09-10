@@ -7,6 +7,7 @@ import { InfoBlockComponent } from './components/info-block/info-block.component
 import { NavBlockComponent } from './components/nav-block/nav-block.component';
 import { HeaderComponent } from './pages/header/header.component';
 import { CategoryNavBlockComponent } from './components/category-nav-block/category-nav-block.component';
+import { CatalogComponent } from './components/catalog/catalog.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { CategoryNavBlockComponent } from './components/category-nav-block/categ
     NavBlockComponent,
     HeaderComponent,
     CategoryNavBlockComponent,
+    CatalogComponent,
   ],
   imports: [CommonModule, SharedModule],
   exports: [HeaderComponent],
