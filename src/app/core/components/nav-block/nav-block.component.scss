@@ -5,16 +5,22 @@
     display: flex;
     justify-content: space-around;
   }
+
   &_input {
+    padding: $min-padding;
     width: 80%;
+    border-radius: $std-border-radius;
+
     &_container {
       display: flex;
       align-items: center;
       flex-grow: 0.7;
     }
   }
+
   &_button{
     margin: $std-margin;
+
     &_container {
       display: flex;
     }

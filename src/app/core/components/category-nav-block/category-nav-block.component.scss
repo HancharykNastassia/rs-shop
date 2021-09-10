@@ -1,0 +1,10 @@
+@import "../../../../variables";
+
+.category{
+  &-container{
+    background-color: $categories-line-bgr;
+  }
+  &-button{
+    margin: $std-margin;
+  }
+}
