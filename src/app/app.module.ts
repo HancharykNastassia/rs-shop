@@ -8,6 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { StoreModule } from '@ngrx/store';
 import { reducer } from './redux/reducers/app-reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { CategoriesEffects } from './redux/effects/categories-effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +20,7 @@ import { reducer } from './redux/reducers/app-reducer';
     BrowserAnimationsModule,
     CoreModule,
     StoreModule.forRoot(reducer),
+    EffectsModule.forRoot([CategoriesEffects])
   ],
   providers: [],
   bootstrap: [AppComponent],

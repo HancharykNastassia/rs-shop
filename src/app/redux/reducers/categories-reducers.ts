@@ -3,8 +3,8 @@ import { getCategories, getCategoriesSuccess } from "../actions/categories-actio
 import { CategoriesState, initialCategoriesState } from "../state.models";
 
 const _reducer = createReducer(initialCategoriesState,
-  on(getCategories, (state, {data}) => ({...state, categories: data})),
-  on(getCategoriesSuccess, (state) => ({...state}))
+  on(getCategories, (state) => ({...state})),
+  on(getCategoriesSuccess, (state, {data}) => ({...state, categories: data}))
   );
 
 export function categoriesReducer(state: CategoriesState, action: Action): CategoriesState {

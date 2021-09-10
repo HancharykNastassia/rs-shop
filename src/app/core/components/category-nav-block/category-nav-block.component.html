@@ -3,7 +3,23 @@
   class="category-button"
   mat-raised-button
   color="primary"
-  *ngFor="let category of (categories$ | async)">
+  *ngFor="let category of (categories$ | async)"
+  [matMenuTriggerFor]="subs"
+  [matMenuTriggerData]="{cat: category.id}"
+  #menuTrigger="matMenuTrigger"
+  (mouseover)="openMenu(menuTrigger)"
+  (click)="onMenuClick(menuTrigger)">
   {{category.name}}
   </button>
 </div>
+<mat-menu #subs="matMenu" [hasBackdrop]="false">
+  <span (mouseout)="closeMenu()">
+    <ng-template matMenuContent let-cat="cat">
+      <p
+      mat-menu-item
+      *ngFor="let subCat of (getSubcategories(cat) | async)">
+      {{subCat.name}}
+      </p>
+    </ng-template>
+  </span>
+</mat-menu>
