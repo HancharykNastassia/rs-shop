@@ -1,13 +1,19 @@
 <div class="catalog-container">
   <ul class="catalog-cats no-dot-list">
-    <li *ngFor="let cat of (categories$ | async)"
+    <li class="catalog-cat" *ngFor="let cat of (categories$ | async)"
     (mouseover)="showSubCategories(cat.id)">
-      {{cat.name}}</li>
+    <mat-icon
+    color="warn"
+    aria-hidden="false">
+    {{getIcon(cat.id)}}
+  </mat-icon>
+      {{cat.name}}
+    </li>
   </ul>
   <div class="catalog-subcats">
-    <h3>{{getTitle() | async}}</h3>
+    <h3 class="catalog-title">{{getTitle() | async}}</h3>
     <ul class="two-cols no-dot-list">
-      <li *ngFor="let subCat of (subCategories$ | async)">
+      <li class="catalog-subcat" *ngFor="let subCat of (subCategories$ | async)">
         {{subCat.name}}
       </li>
     </ul>

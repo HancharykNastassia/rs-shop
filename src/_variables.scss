@@ -1,8 +1,10 @@
 @import '~@angular/material/theming';
 
-$header-bgr: mat-color($mat-purple, 500);
-$categories-line-bgr: mat-color($mat-yellow, 600);
-$white-brg: mat-color($mat-gray, 50);
+$purple-color: mat-color($mat-purple, 500);
+$dark-purple-color: mat-color($mat-indigo, 500);
+$light-yellow-color: mat-color($mat-yellow, 200);
+$yellow-color: mat-color($mat-yellow, 600);
+$white-color: mat-color($mat-purple, 50);
 
 $std-border-radius: 5px;
 

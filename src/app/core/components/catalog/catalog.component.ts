@@ -14,6 +14,13 @@ import { CategoryModel, SubcategoryModel } from '../../models/category-models';
 export class CatalogComponent implements OnInit {
   @Input() categories$!: Observable<CategoryModel[]>
   @Input() subCategories$!: Observable<SubcategoryModel[]>
+  categories = [
+    {id:'appliances', icon: 'kitchen'},
+    {id:'electronics', icon: 'devices'},
+    {id:'computers-peripherals', icon: 'cable'},
+    {id:'furniture', icon: 'bed'},
+    {id:'hobbies', icon: 'book'},
+  ]
 
   chosenId?: string;
 
@@ -37,6 +44,10 @@ export class CatalogComponent implements OnInit {
         return array.find((item) => item.id === this.chosenId)?.name || '';
       })
     );
+  }
+
+  getIcon(id: string): string{
+    return this.categories.find((item) => item.id === id)?.icon || 'help';
   }
 
   showSubCategories(id: string): void {

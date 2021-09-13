@@ -2,7 +2,13 @@
 <div class="nav-block_container">
   <a href="#"> LOGO !!!</a>
   <div class="nav-block_input_container">
-    <button class="nav-block_button" mat-raised-button color="accent">Catalog</button>
+    <button
+    class="nav-block_button"
+    mat-raised-button color="accent"
+    (click)="toggleCatalog()">
+    <mat-icon *ngIf="isCatalogOpen" aria-hidden="false">close</mat-icon>
+    Catalog
+  </button>
     <input class="nav-block_input white-button" matInput placeholder="Search goods">
   </div>
   <div class="nav-block_button_container">

@@ -3,26 +3,52 @@
 *{
   font-size: 20px;
   line-height: 32px;
-  color: purple;
-
-  li{
-    padding: $min-padding;
-    margin: $std-margin;
-    border: 1px solid green;
-    border-radius: $std-border-radius;
-  }
 }
 
 .catalog{
   &-container{
     display: flex;
-    background-color: $white-brg;
+    background-color: $white-color;
   }
+
   &-cats {
+    margin: $std-margin;
+    padding: $std-padding;
     width: 30%;
+    background-color: $light-yellow-color;
+    border-radius: $std-border-radius;
   }
+
   &-subcats {
+    margin: $std-margin;
+    padding: $std-padding;
     width: 70%;
+  }
+  &-cat {
+    padding: $std-padding;
+    border-radius: $std-border-radius;
+    color: $dark-purple-color;
+
+    &:hover{
+      color: $yellow-color;
+      background-color: $purple-color;
+      cursor: pointer;
+    }
+  }
+
+  &-subcat{
+    padding: $min-padding;
+    color: $dark-purple-color;
+
+    &:hover{
+      background-color: $yellow-color;
+      cursor: pointer;
+    }
+  }
+  &-title{
+    font-size: 28px;
+    line-height: 36px;
+    color: $dark-purple-color;
   }
 }
 
@@ -33,4 +59,5 @@
 
 .two-cols {
   column-count: 2;
+  column-rule: 2px solid $purple-color;
 }
