@@ -1,11 +1,18 @@
-<mat-form-field color="primary">
-  <mat-select [(value)]="selected.value">
-    <mat-select-trigger>
-      <mat-icon color="primary" aria-hidden="false">place</mat-icon> {{selected.viewValue}}
-    </mat-select-trigger>
-    <mat-option *ngFor="let city of cities" [value]="city.value" (click)="selected = city">
-      <mat-icon color="primary" aria-hidden="false">place</mat-icon>
-      {{city.viewValue}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+<button
+class="location-button"
+mat-stroked-button
+color="primary"
+[matMenuTriggerFor]="menu">
+  <mat-icon color="primary" aria-hidden="false">place</mat-icon>
+  {{selected.viewValue}}
+</button>
+<mat-menu #menu="matMenu">
+  <div
+  mat-menu-item
+  class="location-option"
+  *ngFor="let city of cities"
+  (click)="selected = city">
+    <mat-icon color="primary" aria-hidden="false">place</mat-icon>
+    <p class="location-text">{{city.viewValue}}</p>
+  </div>
+</mat-menu>

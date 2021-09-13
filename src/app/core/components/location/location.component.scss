@@ -1,1 +1,16 @@
+@import "../../../../variables";
 
+.location{
+  &-button{
+    margin: $std-margin;
+    background-color: $white-color;
+  }
+  &-option{
+    display: flex;
+    align-items: center;
+  }
+  &-text {
+    padding: 0;
+    margin: 0;
+  }
+}

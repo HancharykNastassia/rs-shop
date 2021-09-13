@@ -6,7 +6,10 @@
     class="nav-block_button"
     mat-raised-button color="accent"
     (click)="toggleCatalog()">
-    <mat-icon *ngIf="isCatalogOpen" aria-hidden="false">close</mat-icon>
+    <mat-icon *ngIf="isCatalogOpen else openCatalog" aria-hidden="false">close</mat-icon>
+    <ng-template #openCatalog>
+      <mat-icon aria-hidden="false">expand_more</mat-icon>
+    </ng-template>
     Catalog
   </button>
     <input class="nav-block_input white-button" matInput placeholder="Search goods">
