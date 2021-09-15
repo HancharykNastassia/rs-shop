@@ -8,6 +8,9 @@ import { NavBlockComponent } from './components/nav-block/nav-block.component';
 import { HeaderComponent } from './pages/header/header.component';
 import { CategoryNavBlockComponent } from './components/category-nav-block/category-nav-block.component';
 import { CatalogComponent } from './components/catalog/catalog.component';
+import { ItemCardComponent } from './components/item-card/item-card.component';
+import { CategoryPageComponent } from './pages/category-page/category-page.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -18,8 +21,10 @@ import { CatalogComponent } from './components/catalog/catalog.component';
     HeaderComponent,
     CategoryNavBlockComponent,
     CatalogComponent,
+    ItemCardComponent,
+    CategoryPageComponent,
   ],
-  imports: [CommonModule, SharedModule],
-  exports: [HeaderComponent],
+  imports: [CommonModule, SharedModule, RouterModule],
+  exports: [HeaderComponent, CategoryPageComponent],
 })
 export class CoreModule {}

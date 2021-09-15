@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
@@ -18,7 +19,7 @@ export class CategoryNavBlockComponent implements OnInit {
 
   private _trigger?: MatMenuTrigger;
 
-  constructor(private categoryService: GoodsService, private store: Store<AppState>) { }
+  constructor(private categoryService: GoodsService, private store: Store<AppState>, private router: Router) { }
 
   ngOnInit(): void {
     this.store.dispatch(getCategories());
@@ -46,7 +47,10 @@ export class CategoryNavBlockComponent implements OnInit {
     this._trigger = undefined;
   }
 
-  onMenuClick(trigger: MatMenuTrigger): void {
-    this._trigger === trigger ? this.closeMenu() : this.openMenu(trigger);
+  onMenuClick(catID: string, subcatID?: string): void {
+    //this.categoryService.getGoodsFrom(catID, subcatID, 0, 10);
+    subcatID ?
+    this.router.navigate([`[/goods/${catID}/${subcatID}]`])
+    : this.router.navigate([`[/goods/${catID}]`]);
   }
 }

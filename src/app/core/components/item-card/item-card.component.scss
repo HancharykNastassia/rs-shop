@@ -1,0 +1,39 @@
+@import "../../../../variables";
+
+.item{
+  &-card {
+    margin: $std-margin;
+    padding: $std-padding;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 250px;
+    overflow-x: visible;
+    background-color: $light-purple-color;
+    border-radius: $std-border-radius;
+  }
+  &-image{
+    height: 200px;
+    &-container{
+      padding: $std-padding 0;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      background-color: white;
+      border-radius: $std-border-radius;
+    }
+  }
+  &-tilte {
+    text-align: center;
+    font-weight: bold;
+    color: $black-color;
+  }
+  &-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &-price{
+    font-size: 32px;
+  }
+}

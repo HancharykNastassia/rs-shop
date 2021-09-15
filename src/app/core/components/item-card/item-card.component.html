@@ -1,0 +1,17 @@
+<div class="item-card">
+  <div class="item-image-container">
+    <img class="item-image" [src]="item.imageUrls[0]" alt="item image">
+  </div>
+  <h3 class="item-tilte">{{item.name}}</h3>
+  <div class="item-info">
+    <p>Available: {{item.availableAmount}}</p>
+    <p class="item-price">{{item.price | number: '1.2'}} BYN</p>
+    <div>
+      <mat-icon *ngFor="let i of ratingArray" color="warn">star</mat-icon>
+    </div>
+  </div>
+  <div>
+    <button mat-raised-button color="primary">В Корзину</button>
+    <button mat-raised-button color="accent">В Избранное</button>
+  </div>
+</div>
