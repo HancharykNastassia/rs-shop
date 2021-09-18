@@ -25,8 +25,8 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
     this.subscription = this.route.queryParams.subscribe(params => {
       this.category = params['category'],
       this.subcategory = params['subcategory']
+      this.goods$ = this.dataService.getGoodsFrom(this.category, this.subcategory, this.reqStartPosition, this.itemsReqCount);
     });
-    this.goods$ = this.dataService.getGoodsFrom(this.category, this.subcategory, this.reqStartPosition, this.itemsReqCount);
   }
 
   ngOnDestroy(): void {
