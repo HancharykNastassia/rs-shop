@@ -10,7 +10,6 @@ import { ItemModel } from '../models/item-models';
 })
 export class GoodsService {
   host = "http://localhost:3004/";
-  //itemsGroup = new BehaviorSubject<ItemModel[]>([]);
 
   constructor(private http: HttpClient) {}
 
@@ -27,12 +26,12 @@ export class GoodsService {
     if (subcategory) {
       path = `${path}/${subcategory}`;
     }
-    if (startPosition && countNumber) {
-      const params = new HttpParams().appendAll({
+    if (typeof(startPosition) !=='undefined' && typeof(countNumber) !== 'undefined') {
+      const reqParams = new HttpParams().appendAll({
         start: startPosition,
         count: countNumber,
       });
-      return this.http.get<ItemModel[]>(path, {params});
+      return this.http.get<ItemModel[]>(path, {params: reqParams});
     }
     return this.http.get<ItemModel[]>(path);
   }

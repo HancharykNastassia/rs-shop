@@ -4,7 +4,8 @@
   </div>
   <h3 class="item-tilte">{{item.name}}</h3>
   <div class="item-info">
-    <div   *ngIf="item.availableAmount > 0; else noGoods" class="item-icon-container">
+    <div *ngIf="item.availableAmount > 0; else noGoods"
+      class="item-icon-container">
       <mat-icon
       class="item-icon"
       [appAvailiable]="item.availableAmount">
@@ -15,7 +16,7 @@
     </p>
     </div>
     <ng-template #noGoods>
-      <div>
+      <div class="item-icon-container">
         <mat-icon
         class="item-icon"
         [appAvailiable]="item.availableAmount">

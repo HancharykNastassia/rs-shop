@@ -1,5 +1,23 @@
+@import "../../../../variables";
+
+.breadcrumbs{
+  margin: $std-margin;
+  color: $gray-color;
+}
+.clear-link {
+  outline: none;
+  text-decoration: none;
+  color: $gray-color;
+}
 .card-comtainer {
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
+}
+
+.title {
+  margin: $std-margin;
+  font-size: 32px;
+  font-weight: bold;
+  color: $black-color;
 }
