@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { AppState } from 'src/app/redux/state.models';
 import { CategoryModel } from '../../models/category-models';
 import { ItemModel } from '../../models/item-models';
+import { SortCriteria } from '../../pipes/sort.pipe';
 import { GoodsService } from '../../services/goods.service';
 
 @Component({
@@ -17,6 +18,8 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
   @Input() goods$ = new Observable<ItemModel[]>();
   @Input() categoryName?: Observable<CategoryModel | undefined>;
   @Input() subcategoryName?: Observable<string | undefined>;
+  @Input() sortCriteria?: SortCriteria;
+  @Input() sortIsAsc?: boolean;
 
   subscription!: Subscription;
 
@@ -51,5 +54,23 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+  }
+
+  sortPrice(): void {
+    if (this.sortCriteria === SortCriteria.price) {
+      this.sortIsAsc = !this.sortIsAsc;
+    } else {
+      this.sortCriteria = SortCriteria.price;
+      this.sortIsAsc = true;
+    }
+  }
+
+  sortPopularity(): void {
+    if (this.sortCriteria === SortCriteria.popularity) {
+      this.sortIsAsc = !this.sortIsAsc;
+    } else {
+      this.sortCriteria = SortCriteria.popularity;
+      this.sortIsAsc = true;
+    }
   }
 }

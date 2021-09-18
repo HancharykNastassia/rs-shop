@@ -12,6 +12,7 @@ import { ItemCardComponent } from './components/item-card/item-card.component';
 import { CategoryPageComponent } from './pages/category-page/category-page.component';
 import { RouterModule } from '@angular/router';
 import { AvailiableDirective } from './directives/availiable.directive';
+import { SortPipe } from './pipes/sort.pipe';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AvailiableDirective } from './directives/availiable.directive';
     ItemCardComponent,
     CategoryPageComponent,
     AvailiableDirective,
+    SortPipe,
   ],
   imports: [CommonModule, SharedModule, RouterModule],
   exports: [HeaderComponent, CategoryPageComponent],
