@@ -1,3 +1,12 @@
+<a routerLink="/category" [queryParams]="{'category': category}"> category</a>
+<span *ngIf="subcategory">
+ >
+ <a
+ routerLink="/category"
+ [queryParams]="{'category': category, 'subcategory': subcategory}">
+subcategory
+</a>
+</span>
 <div class="card-comtainer">
   <app-item-card
   *ngFor="let item of (goods$ | async)"
