@@ -16,11 +16,11 @@
   </span>
 </div>
 <h3 class="title">{{this.subcategory ? (this.subcategoryName | async) : (this.categoryName | async)?.name}}</h3>
-<span>
+<p class="sort-text">
   Сортировать по:
-  <p (click)="sortPrice()">цене</p>
-  <p (click)="sortPopularity()">популярности</p>
-</span>
+  <span class="sort-btn" (click)="sortPrice()">цене</span>
+  <span class="sort-btn" (click)="sortPopularity()">популярности</span>
+</p>
 <div class="card-comtainer">
   <app-item-card
   *ngFor="let item of (goods$ | async)! | sort:sortCriteria:sortIsAsc"

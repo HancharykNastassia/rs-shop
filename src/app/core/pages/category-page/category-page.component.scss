@@ -21,3 +21,14 @@
   font-weight: bold;
   color: $black-color;
 }
+
+.sort{
+  &-text {
+    margin: $std-margin;
+    color: $purple-color;
+  }
+  &-btn{
+    margin: $min-margin;
+    cursor: pointer;
+  }
+}
