@@ -1,7 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { concat, merge, Observable, of, scheduled, Subscription } from 'rxjs';
-import { map, mergeAll, switchMap } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
 import { ItemModel } from '../../models/item-models';
 import { GoodsService } from '../../services/goods.service';
 

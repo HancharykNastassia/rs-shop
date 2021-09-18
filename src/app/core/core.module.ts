@@ -11,6 +11,7 @@ import { CatalogComponent } from './components/catalog/catalog.component';
 import { ItemCardComponent } from './components/item-card/item-card.component';
 import { CategoryPageComponent } from './pages/category-page/category-page.component';
 import { RouterModule } from '@angular/router';
+import { AvailiableDirective } from './directives/availiable.directive';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { RouterModule } from '@angular/router';
     CatalogComponent,
     ItemCardComponent,
     CategoryPageComponent,
+    AvailiableDirective,
   ],
   imports: [CommonModule, SharedModule, RouterModule],
   exports: [HeaderComponent, CategoryPageComponent],

@@ -8,12 +8,14 @@
     flex-direction: column;
     align-items: center;
     width: 250px;
+    height: 500px;
     overflow-x: visible;
     background-color: $light-purple-color;
     border-radius: $std-border-radius;
   }
   &-image{
     height: 200px;
+    max-width: 100%;
     &-container{
       padding: $std-padding 0;
       display: flex;
@@ -35,5 +37,17 @@
   }
   &-price{
     font-size: 32px;
+  }
+  &-icon{
+    margin: $min-margin;
+    &-container{
+      display: flex;
+      align-items: center;
+      margin-bottom: $std-margin;
+    }
+    &-text{
+      margin: 0;
+      color: $dark-purple-color;
+    }
   }
 }
