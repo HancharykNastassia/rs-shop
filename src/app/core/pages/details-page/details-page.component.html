@@ -1,5 +1,15 @@
-<h3>{{(item | async)!.name}}</h3>
-<div>Slider</div>
+<h3>{{(item | async)?.name}}</h3>
+<div>
+  <owl-carousel-o class="slider-container" [options]="owlOptions">
+    <ng-container *ngFor="let slide of (item | async)?.imageUrls">
+      <ng-template carouselSlide>
+        <div class="slider-image-container">
+          <img class="slider-image" [src]="slide" alt="photo">
+        </div>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
+</div>
 <div>
   <button
   mat-raised-button
@@ -14,5 +24,5 @@
 </div>
 <div>
   <h5>Описание</h5>
-  <p>{{(item | async)!.description}}</p>
+  <p>{{(item | async)?.description}}</p>
 </div>

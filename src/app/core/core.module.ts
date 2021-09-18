@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 import { SharedModule } from '../shared/shared.module';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { LocationComponent } from './components/location/location.component';
@@ -10,7 +12,6 @@ import { CategoryNavBlockComponent } from './components/category-nav-block/categ
 import { CatalogComponent } from './components/catalog/catalog.component';
 import { ItemCardComponent } from './components/item-card/item-card.component';
 import { CategoryPageComponent } from './pages/category-page/category-page.component';
-import { RouterModule } from '@angular/router';
 import { AvailiableDirective } from './directives/availiable.directive';
 import { SortPipe } from './pipes/sort.pipe';
 import { DetailsPageComponent } from './pages/details-page/details-page.component';
@@ -30,7 +31,7 @@ import { DetailsPageComponent } from './pages/details-page/details-page.componen
     SortPipe,
     DetailsPageComponent,
   ],
-  imports: [CommonModule, SharedModule, RouterModule],
+  imports: [CommonModule, CarouselModule, SharedModule, RouterModule],
   exports: [HeaderComponent, CategoryPageComponent,DetailsPageComponent],
 })
 export class CoreModule {}

@@ -1,0 +1,11 @@
+.slider{
+  &-image{
+    height: 500px;
+    width: auto !important;
+    &-container {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+  }
+}
