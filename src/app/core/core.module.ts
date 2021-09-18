@@ -13,6 +13,7 @@ import { CategoryPageComponent } from './pages/category-page/category-page.compo
 import { RouterModule } from '@angular/router';
 import { AvailiableDirective } from './directives/availiable.directive';
 import { SortPipe } from './pipes/sort.pipe';
+import { DetailsPageComponent } from './pages/details-page/details-page.component';
 
 @NgModule({
   declarations: [
@@ -27,8 +28,9 @@ import { SortPipe } from './pipes/sort.pipe';
     CategoryPageComponent,
     AvailiableDirective,
     SortPipe,
+    DetailsPageComponent,
   ],
   imports: [CommonModule, SharedModule, RouterModule],
-  exports: [HeaderComponent, CategoryPageComponent],
+  exports: [HeaderComponent, CategoryPageComponent,DetailsPageComponent],
 })
 export class CoreModule {}

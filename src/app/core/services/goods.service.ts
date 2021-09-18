@@ -35,4 +35,8 @@ export class GoodsService {
     }
     return this.http.get<ItemModel[]>(path);
   }
+
+  getItemInfo(id: string): Observable<ItemModel> {
+    return this.http.get<ItemModel>(`${this.host}goods/item/${id}`);
+  }
 }

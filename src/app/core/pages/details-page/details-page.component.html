@@ -1,0 +1,18 @@
+<h3>{{(item | async)!.name}}</h3>
+<div>Slider</div>
+<div>
+  <button
+  mat-raised-button
+  color="primary">
+  В Корзину
+  </button>
+  <button
+  mat-raised-button
+  color="accent">
+  В Избранное
+  </button>
+</div>
+<div>
+  <h5>Описание</h5>
+  <p>{{(item | async)!.description}}</p>
+</div>
