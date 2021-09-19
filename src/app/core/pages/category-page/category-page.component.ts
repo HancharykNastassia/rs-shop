@@ -39,8 +39,7 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
       this.category = params['category'],
       this.subcategory = params['subcategory']
       this.goods$ = this.dataService.getGoodsFrom(this.category, this.subcategory, this.reqStartPosition, this.itemsReqCount);
-    });
-    this.categoryName = this.store.select((state) =>
+      this.categoryName = this.store.select((state) =>
       state.categories.categories.find(cat => cat.id === this.category)
     );
     if (this.subcategory) {
@@ -50,6 +49,7 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
         })
       )
     }
+    });
   }
 
   ngOnDestroy(): void {
