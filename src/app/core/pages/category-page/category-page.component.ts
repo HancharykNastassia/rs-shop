@@ -1,8 +1,8 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { combineLatest, concat, Observable, of, Subscription } from 'rxjs';
+import { map, mergeScan, scan, startWith } from 'rxjs/operators';
 import { AppState } from 'src/app/redux/state.models';
 import { CategoryModel } from '../../models/category-models';
 import { ItemModel } from '../../models/item-models';
@@ -21,11 +21,10 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
   @Input() sortCriteria?: SortCriteria;
   @Input() sortIsAsc?: boolean;
 
+  goods!: ItemModel[];
   subscription!: Subscription;
-
   category!: string;
   subcategory?: string;
-
   itemsReqCount = 10;
   reqStartPosition = 0;
 
@@ -38,7 +37,9 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
     this.subscription = this.route.queryParams.subscribe(params => {
       this.category = params['category'],
       this.subcategory = params['subcategory']
-      this.goods$ = this.dataService.getGoodsFrom(this.category, this.subcategory, this.reqStartPosition, this.itemsReqCount);
+      this.goods$ = this.dataService.getGoodsFrom(
+        this.category, this.subcategory, this.reqStartPosition, this.itemsReqCount
+        ).pipe(map((item) => this.goods = item));
       this.categoryName = this.store.select((state) =>
       state.categories.categories.find(cat => cat.id === this.category)
     );
@@ -72,5 +73,15 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
       this.sortCriteria = SortCriteria.popularity;
       this.sortIsAsc = true;
     }
+  }
+
+  showMore() {
+    this.reqStartPosition+=10;
+    this.goods$ = this.dataService.getGoodsFrom(
+      this.category, this.subcategory, this.reqStartPosition, this.itemsReqCount
+    ).pipe(mergeScan((acc, item) => {
+      return of([...acc, ...item]);
+    }, this.goods),
+    map((item) => this.goods = item));
   }
 }
