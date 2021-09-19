@@ -36,13 +36,15 @@
     <button
     class="item-button"
     mat-raised-button
-    color="primary">
+    color="primary"
+    [disabled]="item.isInChart">
     В Корзину
     </button>
     <button
     class="item-button"
     mat-raised-button
-    color="accent">
+    color="accent"
+    [disabled]="item.isFavourite">
     В Избранное
     </button>
   </div>

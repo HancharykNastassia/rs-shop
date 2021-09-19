@@ -1,4 +1,40 @@
+@import "../../../../variables";
+
+.detail{
+  &-conteainer{
+    margin: $std-margin;
+    font-size: 16px;
+  }
+  &-title {
+    font-size: 28px;
+    line-height: 42px;
+    color: $dark-purple-color;
+  }
+  &-button{
+    margin: $std-margin;
+  }
+  &-description{
+    padding: $std-padding;
+    color: $black-color;
+    background-color: $light-purple-color;
+    border-radius: $std-border-radius;
+    &-title {
+      padding-bottom: $std-padding;
+      font-size: 20px;
+      color: $dark-purple-color;
+      border-bottom: 1px solid $red-color;
+    }
+  }
+}
+
 .slider{
+  &-icon{
+    position: absolute;
+    top: 0;
+    right: 150px;
+    color: $red-color;
+    font-size: 60px;
+  }
   &-image{
     height: 500px;
     width: auto !important;
@@ -6,6 +42,7 @@
       display: flex;
       justify-content: center;
       width: 100%;
+      position: relative;
     }
   }
 }
