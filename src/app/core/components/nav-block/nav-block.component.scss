@@ -29,3 +29,16 @@
 .white-button{
   background-color: $white-color;
 }
+
+.account{
+  &-enter {
+    display: flex;
+    align-items: center;
+  }
+  &-item{
+    margin: $std-margin;
+  }
+  &-icon {
+    font-size: 30px;
+  }
+}

@@ -15,13 +15,35 @@
     <input class="nav-block_input white-button" matInput placeholder="Search goods">
   </div>
   <div class="nav-block_button_container">
-    <button class="nav-block_button white-button" mat-stroked-button color="primary">
-      <mat-icon aria-hidden="false">login</mat-icon>
-      Accounts
+    <button
+    class="nav-block_button white-button"
+    mat-stroked-button
+    color="primary"
+    [matMenuTriggerFor]="menu">
+      <mat-icon *ngIf="(user$ | async); else login">logout</mat-icon>
+      <ng-template #login>
+        <mat-icon>login</mat-icon>
+      </ng-template>
+      Аккаунт
     </button>
+    <mat-menu #menu="matMenu">
+      <div mat-menu-item *ngIf="(user$ | async); else nouser">
+        <p>{{(user$ | async)?.firstName}} {{(user$ | async)?.lastName}}</p>
+        <button mat-stroked-button color="primary">Выход</button>
+      </div>
+      <ng-template #nouser>
+        <div class="account-enter" mat-menu-item>
+          <mat-icon class="account-item account-icon" color="primary">account_circle</mat-icon>
+          <button class="account-item" mat-raised-button color="primary">Войти</button>
+        </div>
+      </ng-template>
+      <button mat-menu-item>Козина {{(user$ | async)?.chart?.length}}</button>
+      <button mat-menu-item>Избранное {{(user$ | async)?.favorites?.length}}</button>
+      <button mat-menu-item>История заказов</button>
+    </mat-menu>
     <button class="nav-block_button" mat-icon-button color="accent">
       <mat-icon>shopping_cart</mat-icon>
-      0
+      {{(user$ | async)?.chart?.length || 0}}
     </button>
   </div>
 </div>
