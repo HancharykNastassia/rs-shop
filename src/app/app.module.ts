@@ -10,6 +10,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducer } from './redux/reducers/app-reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { CategoriesEffects } from './redux/effects/categories-effects';
+import { UserEffects } from './redux/effects/user-effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +21,7 @@ import { CategoriesEffects } from './redux/effects/categories-effects';
     BrowserAnimationsModule,
     CoreModule,
     StoreModule.forRoot(reducer),
-    EffectsModule.forRoot([CategoriesEffects])
+    EffectsModule.forRoot([CategoriesEffects, UserEffects])
   ],
   providers: [],
   bootstrap: [AppComponent],
