@@ -1,0 +1,14 @@
+@import "../../../../variables";
+
+.chart {
+  &-card{
+    display: flex;
+    justify-content: space-between;
+    padding: $min-padding;
+    margin: $std-margin;
+    align-items: center;
+  }
+  &-image{
+    height: 100px;
+  }
+}

@@ -1,7 +1,10 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Observable, Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { AppState } from 'src/app/redux/state.models';
 import { ItemModel } from '../../models/item-models';
 import { GoodsService } from '../../services/goods.service';
 
@@ -39,7 +42,9 @@ export class DetailsPageComponent implements OnInit, OnDestroy {
     nav: true
   }
 
-  constructor(private dataService: GoodsService, private route: ActivatedRoute) { }
+  constructor(private dataService: GoodsService,
+              private route: ActivatedRoute,
+              private store: Store<AppState>) { }
 
   ngOnInit(): void {
     this.subscription = this.route.queryParams.subscribe((params) =>

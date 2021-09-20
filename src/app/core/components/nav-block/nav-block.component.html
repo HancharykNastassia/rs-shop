@@ -49,8 +49,8 @@
           </button>
         </div>
       </ng-template>
-      <button mat-menu-item>Козина {{(user$ | async)?.chart?.length}}</button>
-      <button mat-menu-item>Избранное {{(user$ | async)?.favorites?.length}}</button>
+      <button mat-menu-item>Козина {{(user$ | async)?.chart?.length || 0}}</button>
+      <button mat-menu-item>Избранное {{(user$ | async)?.favorites?.length || 0}}</button>
       <button mat-menu-item>История заказов</button>
     </mat-menu>
     <button class="nav-block_button" mat-icon-button color="accent">
