@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { ItemModel } from '../../models/item-models';
+import { GoodsService } from '../../services/goods.service';
 
 @Component({
   selector: 'app-cart-card',
@@ -8,23 +9,21 @@ import { ItemModel } from '../../models/item-models';
   styleUrls: ['./cart-card.component.scss']
 })
 export class CartCardComponent implements OnInit {
-  @Input() item$!: Observable<ItemModel>
+  @Output() priceEmmiter = new EventEmitter<number>();
+  @Input() item$!: Observable<ItemModel>;
   @Input() number = 1;
+  @Input() itemID!: string;
 
-  constructor() { }
+  constructor(private dataService: GoodsService) { }
 
   ngOnInit(): void {
-    this.item$ = of(<ItemModel>{
-      availableAmount: 20,
-      description: "lala",
-      id: "id",
-      imageUrls: ["https://cdn21vek.by/img/galleries/6190/679/preview_b/watchfittiab09_huawei_5f76d05335615.jpeg"],
-      isFavourite: true,
-      isInChart: true,
-      name: "name",
-      price: 0.00,
-      rating: 5,
-    })
+    this.item$ = this.dataService.getItemInfo(this.itemID);
+    //this.priceEmmiter.emit(this.totalPrice);
   }
 
+  emitTotalPrice(): void {
+    this.item$.subscribe((item) => {
+      this.priceEmmiter.emit(item.price * this.number);
+    });
+  }
 }

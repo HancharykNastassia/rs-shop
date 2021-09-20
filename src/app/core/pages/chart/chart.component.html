@@ -1,0 +1,5 @@
+<app-cart-card (priceEmmiter)="countTotalPrice($event)"
+*ngFor="let id of (chartItemsIds$ | async)"
+[itemID]="id">
+</app-cart-card>
+<p>{{totalPrice}}</p>

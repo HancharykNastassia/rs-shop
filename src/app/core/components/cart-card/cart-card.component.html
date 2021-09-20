@@ -7,11 +7,17 @@
     <p>Description:</p>
     <p>{{(item$ | async)!.description}}</p>
   </div>
-  <input mat-input type="number" [(ngModel)]="number" min="1" [max]="(item$ | async)!.availableAmount">
+  <input
+  mat-input
+  type="number"
+  [(ngModel)]="number"
+  min="1"
+  [max]="(item$ | async)!.availableAmount"
+  (change)="emitTotalPrice()">
   <p>Bring: today</p>
   <div>
     <p>Price:</p>
-    <p>{{(item$ | async)!.price * 1}}</p>
+    <p>{{(item$ | async)!.price | number:"1.2"}}</p>
   </div>
   <button>remove</button>
 </div>

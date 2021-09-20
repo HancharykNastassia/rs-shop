@@ -18,6 +18,7 @@ import { SortPipe } from './pipes/sort.pipe';
 import { DetailsPageComponent } from './pages/details-page/details-page.component';
 import { RegisterLoginDialogComponent } from './components/register-login-dialog/register-login-dialog.component';
 import { CartCardComponent } from './components/cart-card/cart-card.component';
+import { ChartComponent } from './pages/chart/chart.component';
 
 @NgModule({
   declarations: [
@@ -35,8 +36,9 @@ import { CartCardComponent } from './components/cart-card/cart-card.component';
     DetailsPageComponent,
     RegisterLoginDialogComponent,
     CartCardComponent,
+    ChartComponent,
   ],
   imports: [FormsModule, CommonModule, CarouselModule, SharedModule, RouterModule],
-  exports: [HeaderComponent, CategoryPageComponent,DetailsPageComponent, CartCardComponent],
+  exports: [HeaderComponent, CategoryPageComponent,DetailsPageComponent, ChartComponent],
 })
 export class CoreModule {}
