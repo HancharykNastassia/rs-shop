@@ -13,6 +13,10 @@ import { AuthorizationService } from '../../services/authorization.service';
 export class RegisterLoginDialogComponent {
   @Input() login = '';
   @Input() password = '';
+  @Input() firstName = '';
+  @Input() lastName = '';
+  @Input() newLogin = '';
+  @Input() newPassword = '';
 
   constructor(
     public dialogRef: MatDialogRef<RegisterLoginDialogComponent>,
@@ -26,7 +30,16 @@ export class RegisterLoginDialogComponent {
   logIn(): void {
     this.userService.loginUser(this.login, this.password).subscribe(token => {
       this.store.dispatch(getUser({token}));
-    })
+    });
     this.dialogRef.close();
+  }
+
+  register(): void {
+    this.userService.registerUser(
+      this.firstName, this.lastName, this.newLogin, this.newPassword
+      ).subscribe(token => {
+        this.store.dispatch(getUser({token}));
+      });
+      this.dialogRef.close();
   }
 }

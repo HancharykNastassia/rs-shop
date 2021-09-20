@@ -16,14 +16,17 @@ export class AuthorizationService {
     return localStorage.getItem("rs-shop-user");
   }
 
-  registerUser(name: string, lastName: string, login: string, password: string): void {
-    this.http.post<{token: string}>(`${this.host}users/register`, {
+  registerUser(name: string, lastName: string, login: string, password: string): Observable<string> {
+    return this.http.post<{token: string}>(`${this.host}users/register`, {
       "firstName": name,
       "lastName": lastName,
       "login": login,
       "password": password
     }).pipe(
-      map(resp => localStorage.setItem("rs-shop-user", resp.token))
+      map(resp => {
+        localStorage.setItem("rs-shop-user", resp.token);
+        return resp.token;
+      })
     );
   }
 
