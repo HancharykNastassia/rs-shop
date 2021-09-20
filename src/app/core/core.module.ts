@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CarouselModule } from 'ngx-owl-carousel-o';
@@ -40,7 +40,7 @@ import { MainComponent } from './pages/main/main.component';
     ChartComponent,
     MainComponent,
   ],
-  imports: [FormsModule, CommonModule, CarouselModule, SharedModule, RouterModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule, CarouselModule, SharedModule, RouterModule],
   exports: [HeaderComponent, MainComponent, CategoryPageComponent,DetailsPageComponent, ChartComponent],
 })
 export class CoreModule {}
