@@ -1,8 +1,8 @@
-<div class="item-card" routerLink="/details" [queryParams]="{'id': item.id}">
+<div class="item-card">
   <div class="item-image-container">
     <img class="item-image" [src]="item.imageUrls[0]" alt="item image">
   </div>
-  <h3 class="item-tilte">{{item.name}}</h3>
+  <h3 class="item-tilte" routerLink="/details" [queryParams]="{'id': item.id}">{{item.name}}</h3>
   <div class="item-info">
     <div *ngIf="item.availableAmount > 0; else noGoods"
       class="item-icon-container">
@@ -37,7 +37,8 @@
     class="item-button"
     mat-raised-button
     color="primary"
-    [disabled]="item.isInChart">
+    [disabled]="item.isInChart"
+    (click)="addItemToChart(item.id)">
     В Корзину
     </button>
     <button

@@ -9,4 +9,8 @@ export const getUser = createAction(
 export const getUserSuccess = createAction(
   '[EFFECT] got user info',
   props<{user?: User}>()
+);
+
+export const addItemToChart = createAction(
+  '[TO CHART BUTTON] add item to the chart'
 )

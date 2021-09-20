@@ -1,7 +1,7 @@
 export interface User {
   firstName: string,
   lastName: string,
-  chart: string[],
+  cart: string[],
   favorites: string[],
   orders: Order[]
 }

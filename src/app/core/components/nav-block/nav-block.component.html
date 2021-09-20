@@ -10,7 +10,7 @@
     <ng-template #openCatalog>
       <mat-icon aria-hidden="false">expand_more</mat-icon>
     </ng-template>
-    Catalog
+    Каталог
   </button>
     <input class="nav-block_input white-button" matInput placeholder="Search goods">
   </div>
@@ -49,13 +49,13 @@
           </button>
         </div>
       </ng-template>
-      <button mat-menu-item>Козина {{(user$ | async)?.chart?.length || 0}}</button>
+      <button mat-menu-item>Козина {{(user$ | async)?.cart?.length}}</button>
       <button mat-menu-item>Избранное {{(user$ | async)?.favorites?.length || 0}}</button>
       <button mat-menu-item>История заказов</button>
     </mat-menu>
     <button class="nav-block_button" mat-icon-button color="accent">
       <mat-icon>shopping_cart</mat-icon>
-      {{(user$ | async)?.chart?.length || 0}}
+      {{(user$ | async)?.cart?.length || 0}}
     </button>
   </div>
 </div>

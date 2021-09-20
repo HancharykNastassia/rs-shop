@@ -12,8 +12,8 @@ export class AuthorizationService {
 
   constructor(private http: HttpClient) {}
 
-  checkLocalStroage(): string | null {
-    return localStorage.getItem("rs-shop-user");
+  checkLocalStroage(): Observable<string | null> {
+    return of(localStorage.getItem("rs-shop-user"));
   }
 
   registerUser(name: string, lastName: string, login: string, password: string): Observable<string> {

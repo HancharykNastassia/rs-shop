@@ -1,9 +1,10 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { CategoryModel } from '../models/category-models';
 import { ItemModel } from '../models/item-models';
+import { AuthorizationService } from './authorization.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import { ItemModel } from '../models/item-models';
 export class GoodsService {
   host = "http://localhost:3004/";
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private auth: AuthorizationService) {}
 
   getCategoriesList(): Observable<CategoryModel[]> {
     return this.http.get<CategoryModel[]>(`${this.host}categories`);
@@ -38,5 +39,19 @@ export class GoodsService {
 
   getItemInfo(id: string): Observable<ItemModel> {
     return this.http.get<ItemModel>(`${this.host}goods/item/${id}`);
+  }
+
+  addItemToChart(id: string): Observable<boolean> {
+    return this.auth.checkLocalStroage().pipe(
+      switchMap((token) => {
+        return this.http.post(`${this.host}users/cart`, {
+          "id": id,
+        }, {
+          headers: new HttpHeaders(`Authorization: Bearer ${token}`)
+        }).pipe(
+          map(() => true)
+        )
+      })
+    );
   }
 }
