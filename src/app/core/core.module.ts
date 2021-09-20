@@ -19,6 +19,7 @@ import { DetailsPageComponent } from './pages/details-page/details-page.componen
 import { RegisterLoginDialogComponent } from './components/register-login-dialog/register-login-dialog.component';
 import { CartCardComponent } from './components/cart-card/cart-card.component';
 import { ChartComponent } from './pages/chart/chart.component';
+import { MainComponent } from './pages/main/main.component';
 
 @NgModule({
   declarations: [
@@ -37,8 +38,9 @@ import { ChartComponent } from './pages/chart/chart.component';
     RegisterLoginDialogComponent,
     CartCardComponent,
     ChartComponent,
+    MainComponent,
   ],
   imports: [FormsModule, CommonModule, CarouselModule, SharedModule, RouterModule],
-  exports: [HeaderComponent, CategoryPageComponent,DetailsPageComponent, ChartComponent],
+  exports: [HeaderComponent, MainComponent, CategoryPageComponent,DetailsPageComponent, ChartComponent],
 })
 export class CoreModule {}
