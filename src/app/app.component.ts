@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { AuthorizationService } from './core/services/authorization.service';
 import { getCategories } from './redux/actions/categories-actions';
 import { getUser } from './redux/actions/user-actions';
 import { AppState } from './redux/state.models';
@@ -12,10 +13,13 @@ import { AppState } from './redux/state.models';
 export class AppComponent implements OnInit {
   title = 'rs-shop';
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private userService: AuthorizationService, private store: Store<AppState>) {}
 
   ngOnInit(): void {
     this.store.dispatch(getCategories());
-    this.store.dispatch(getUser());
+    const token = this.userService.checkLocalStroage()
+    if (token){
+      this.store.dispatch(getUser({token}));
+    }
   }
 }

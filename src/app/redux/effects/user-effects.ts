@@ -10,7 +10,7 @@ export class UserEffects {
   getUsers = createEffect(() =>
   this.actions.pipe(
     ofType(getUser),
-    switchMap(() => this.userService.getUserInfo().pipe(
+    switchMap(({token}) => this.userService.getUserInfo(token).pipe(
       map(user => getUserSuccess({user}))
     ))
   )

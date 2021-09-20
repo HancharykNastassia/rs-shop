@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CarouselModule } from 'ngx-owl-carousel-o';
@@ -15,6 +16,7 @@ import { CategoryPageComponent } from './pages/category-page/category-page.compo
 import { AvailiableDirective } from './directives/availiable.directive';
 import { SortPipe } from './pipes/sort.pipe';
 import { DetailsPageComponent } from './pages/details-page/details-page.component';
+import { RegisterLoginDialogComponent } from './components/register-login-dialog/register-login-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,8 +32,9 @@ import { DetailsPageComponent } from './pages/details-page/details-page.componen
     AvailiableDirective,
     SortPipe,
     DetailsPageComponent,
+    RegisterLoginDialogComponent,
   ],
-  imports: [CommonModule, CarouselModule, SharedModule, RouterModule],
+  imports: [FormsModule, CommonModule, CarouselModule, SharedModule, RouterModule],
   exports: [HeaderComponent, CategoryPageComponent,DetailsPageComponent],
 })
 export class CoreModule {}

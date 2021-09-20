@@ -8,6 +8,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [],
@@ -21,6 +22,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatFormFieldModule,
     MatCardModule,
     MatSelectModule,
+    MatDialogModule,
   ],
 })
 export class SharedModule {}

@@ -27,14 +27,26 @@
       Аккаунт
     </button>
     <mat-menu #menu="matMenu">
-      <div mat-menu-item *ngIf="(user$ | async); else nouser">
-        <p>{{(user$ | async)?.firstName}} {{(user$ | async)?.lastName}}</p>
-        <button mat-stroked-button color="primary">Выход</button>
+      <div class="account-enter" mat-menu-item *ngIf="(user$ | async); else nouser">
+        <p class="account-item user-name">{{(user$ | async)?.firstName}} {{(user$ | async)?.lastName}}</p>
+        <button
+        class="account-item"
+        mat-stroked-button
+        color="primary"
+        (click)="logOut()">
+        Выход
+      </button>
       </div>
       <ng-template #nouser>
         <div class="account-enter" mat-menu-item>
           <mat-icon class="account-item account-icon" color="primary">account_circle</mat-icon>
-          <button class="account-item" mat-raised-button color="primary">Войти</button>
+          <button
+          class="account-item"
+          mat-raised-button
+          color="primary"
+          (click)="openDialog()">
+          Войти
+          </button>
         </div>
       </ng-template>
       <button mat-menu-item>Козина {{(user$ | async)?.chart?.length}}</button>
