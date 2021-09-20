@@ -42,7 +42,7 @@ export class DetailsPageComponent implements OnInit, OnDestroy {
   constructor(private dataService: GoodsService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.subscription = this.route.params.subscribe((params) =>
+    this.subscription = this.route.queryParams.subscribe((params) =>
       this.item = this.dataService.getItemInfo(params['id'])
     );
   }

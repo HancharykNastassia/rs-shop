@@ -11,7 +11,7 @@ const routes: Routes = [
     path: 'category', component: CategoryPageComponent,
   },
   {
-    path: 'details/:id', component: DetailsPageComponent
+    path: 'details', component: DetailsPageComponent
   }
 ];
 
