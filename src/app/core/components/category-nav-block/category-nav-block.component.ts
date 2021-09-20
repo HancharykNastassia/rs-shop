@@ -44,11 +44,4 @@ export class CategoryNavBlockComponent implements OnInit {
     this._trigger?.closeMenu();
     this._trigger = undefined;
   }
-
-  onMenuClick(catID: string, subcatID?: string): void {
-    //this.categoryService.getGoodsFrom(catID, subcatID, 0, 10);
-    subcatID ?
-    this.router.navigate([`[/goods/${catID}/${subcatID}]`])
-    : this.router.navigate([`[/goods/${catID}]`]);
-  }
 }
