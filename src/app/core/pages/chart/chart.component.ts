@@ -12,6 +12,10 @@ import { ItemModel } from '../../models/item-models';
 export class ChartComponent implements OnInit {
   @Input() chartItemsIds$?: Observable<string[] | undefined>
   @Input() totalPrice = 0;
+  @Input() name?: string;
+  @Input() adress?: string;
+  @Input() telNumber?: string;
+  @Input() dateTime?: string;
 
   constructor(private store: Store<AppState>) { }
 

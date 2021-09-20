@@ -1,5 +1,28 @@
+<h2>Оформление заказа</h2>
 <app-cart-card (priceEmmiter)="countTotalPrice($event)"
 *ngFor="let id of (chartItemsIds$ | async)"
 [itemID]="id">
 </app-cart-card>
 <p>{{totalPrice}}</p>
+<h3>Детали заказа</h3>
+<mat-form-field appearance="fill">
+  <mat-label>ФИО</mat-label>
+  <input matInput [(ngModel)]="name">
+</mat-form-field>
+<mat-form-field appearance="fill">
+  <mat-label>Адрес доставки</mat-label>
+  <input matInput [(ngModel)]="adress">
+</mat-form-field>
+<mat-form-field appearance="fill">
+  <mat-label>Номер телефона</mat-label>
+  <input type="tel" matInput [(ngModel)]="telNumber">
+</mat-form-field>
+<mat-form-field appearance="fill">
+  <mat-label>Дата доставки</mat-label>
+  <input type="datetime-local" matInput>
+</mat-form-field>
+<mat-form-field appearance="fill">
+  <mat-label>Комментарии к заказу</mat-label>
+  <textarea matInput></textarea>
+</mat-form-field>
+<button>Подтвердить заказ</button>
