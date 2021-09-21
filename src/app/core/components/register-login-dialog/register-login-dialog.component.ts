@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
@@ -11,7 +11,7 @@ import { AuthorizationService } from '../../services/authorization.service';
   templateUrl: './register-login-dialog.component.html',
   styleUrls: ['./register-login-dialog.component.scss']
 })
-export class RegisterLoginDialogComponent {
+export class RegisterLoginDialogComponent implements OnDestroy {
   @Input() login = '';
   @Input() password = '';
   @Input() firstName = '';
@@ -19,28 +19,36 @@ export class RegisterLoginDialogComponent {
   @Input() newLogin = '';
   @Input() newPassword = '';
 
+  subscription = new Subscription();
+
   constructor(
     public dialogRef: MatDialogRef<RegisterLoginDialogComponent>,
     private userService: AuthorizationService,
     private store: Store<AppState>) {}
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
   logIn(): void {
-    this.userService.loginUser(this.login, this.password).subscribe(token => {
-      this.store.dispatch(getUser({token}));
-    });
+    this.subscription.add(
+      this.userService.loginUser(this.login, this.password).subscribe(token => {
+        this.store.dispatch(getUser({token}));
+      }));
     this.dialogRef.close();
   }
 
   register(): void {
-    this.userService.registerUser(
-      this.firstName, this.lastName, this.newLogin, this.newPassword
-      ).subscribe(token => {
-        this.store.dispatch(getUser({token}));
-      });
+    this.subscription.add(
+      this.userService.registerUser(
+        this.firstName, this.lastName, this.newLogin, this.newPassword
+        ).subscribe(token => {
+          this.store.dispatch(getUser({token}));
+        }));
       this.dialogRef.close();
   }
 }

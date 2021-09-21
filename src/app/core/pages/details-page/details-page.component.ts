@@ -3,7 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Observable, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
+import { getUserChanges } from 'src/app/redux/actions/user-actions';
 import { AppState } from 'src/app/redux/state.models';
 import { ItemModel } from '../../models/item-models';
 import { GoodsService } from '../../services/goods.service';
@@ -15,7 +16,9 @@ import { GoodsService } from '../../services/goods.service';
 })
 export class DetailsPageComponent implements OnInit, OnDestroy {
   @Input() item!: Observable<ItemModel>;
+
   subscription!: Subscription;
+  id!: string;
 
   owlOptions: OwlOptions = {
     loop: true,
@@ -48,11 +51,29 @@ export class DetailsPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscription = this.route.queryParams.subscribe((params) =>
-      this.item = this.dataService.getItemInfo(params['id'])
+      this.item = this.dataService.getItemInfo(params['id']).pipe(
+        tap(item => this.id = item.id)
+      )
     );
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+  }
+
+  addToChart(): void {
+    this.subscription.add(
+      this.dataService.addItemToChart(this.id).subscribe(res => {
+        if (res) this.store.dispatch(getUserChanges());
+      })
+    )
+  }
+
+  addToFavorites(): void {
+    this.subscription.add(
+      this.dataService.addItemToFavorites(this.id).subscribe(res => {
+        if (res) this.store.dispatch(getUserChanges());
+      })
+    );
   }
 }

@@ -21,14 +21,16 @@
     class="detail-button"
     mat-raised-button
     color="primary"
-    [disabled]="(item | async)?.isInChart">
+    [disabled]="(item | async)?.isInChart"
+    (click)="addToChart()">
     В Корзину
     </button>
     <button
     class="detail-button"class="detail-button"
     mat-raised-button
     color="accent"
-    [disabled]="(item | async)?.isFavourite">
+    [disabled]="(item | async)?.isFavourite"
+    (click)="addToFavorites()">
     В Избранное
     </button>
   </div>

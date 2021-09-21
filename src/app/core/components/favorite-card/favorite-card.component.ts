@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { getUserChanges } from 'src/app/redux/actions/user-actions';
@@ -11,7 +11,7 @@ import { GoodsService } from '../../services/goods.service';
   templateUrl: './favorite-card.component.html',
   styleUrls: ['./favorite-card.component.scss']
 })
-export class FavoriteCardComponent implements OnInit {
+export class FavoriteCardComponent implements OnInit, OnDestroy {
   @Input() item!: ItemModel;
 
   ratingArray?: unknown[];
@@ -21,6 +21,10 @@ export class FavoriteCardComponent implements OnInit {
 
   ngOnInit():void {
     this.ratingArray = new Array(this.item.rating);
+  }
+
+  ngOnDestroy():void {
+    this.subscription.unsubscribe();
   }
 
   addItemToChart(): void {

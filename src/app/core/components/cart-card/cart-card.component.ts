@@ -18,7 +18,6 @@ export class CartCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.item$ = this.dataService.getItemInfo(this.itemID);
-    //this.priceEmmiter.emit(this.totalPrice);
   }
 
   emitTotalPrice(): void {
