@@ -50,7 +50,7 @@
         </div>
       </ng-template>
       <button mat-menu-item routerLink="/chart">Корзина {{(user$ | async)?.cart?.length || 0}}</button>
-      <button mat-menu-item>Избранное {{(user$ | async)?.favorites?.length || 0}}</button>
+      <button mat-menu-item routerLink="/favorites">Избранное {{(user$ | async)?.favorites?.length || 0}}</button>
       <button mat-menu-item>История заказов</button>
     </mat-menu>
     <button class="nav-block_button" mat-icon-button color="accent" routerLink="/chart">

@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { map, switchMap } from "rxjs/operators";
 import { AuthorizationService } from "src/app/core/services/authorization.service";
-import { addItemToChart, getUser, getUserSuccess } from "../actions/user-actions";
+import { getUser, getUserChanges, getUserSuccess } from "../actions/user-actions";
 
 @Injectable()
 export class UserEffects {
@@ -16,13 +16,14 @@ export class UserEffects {
   )
   );
 
-  addToChart = createEffect(()=>
+  changeUserInfo = createEffect(()=>
   this.actions.pipe(
-    ofType(addItemToChart),
+    ofType(getUserChanges),
     switchMap(() => this.userService.checkLocalStroage().pipe(
       map((token) => getUser({token: token || ''}))
     ))
   )
   );
+
   constructor(private actions: Actions, private userService: AuthorizationService){}
 }

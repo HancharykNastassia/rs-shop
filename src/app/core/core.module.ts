@@ -20,6 +20,8 @@ import { RegisterLoginDialogComponent } from './components/register-login-dialog
 import { CartCardComponent } from './components/cart-card/cart-card.component';
 import { ChartComponent } from './pages/chart/chart.component';
 import { MainComponent } from './pages/main/main.component';
+import { FavoriteCardComponent } from './components/favorite-card/favorite-card.component';
+import { FavotirePageComponent } from './pages/favotire-page/favotire-page.component';
 
 @NgModule({
   declarations: [
@@ -39,8 +41,23 @@ import { MainComponent } from './pages/main/main.component';
     CartCardComponent,
     ChartComponent,
     MainComponent,
+    FavoriteCardComponent,
+    FavotirePageComponent,
   ],
-  imports: [FormsModule, ReactiveFormsModule, CommonModule, CarouselModule, SharedModule, RouterModule],
-  exports: [HeaderComponent, MainComponent, CategoryPageComponent,DetailsPageComponent, ChartComponent],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+    CarouselModule,
+    SharedModule,
+    RouterModule,
+  ],
+  exports: [
+    HeaderComponent,
+    MainComponent,
+    CategoryPageComponent,
+    DetailsPageComponent,
+    ChartComponent,
+    FavotirePageComponent],
 })
 export class CoreModule {}

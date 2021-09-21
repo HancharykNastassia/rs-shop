@@ -1,6 +1,6 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Observable, of} from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { CategoryModel } from '../models/category-models';
 import { ItemModel } from '../models/item-models';
@@ -37,8 +37,11 @@ export class GoodsService {
     return this.http.get<ItemModel[]>(path);
   }
 
-  getItemInfo(id: string): Observable<ItemModel> {
-    return this.http.get<ItemModel>(`${this.host}goods/item/${id}`);
+  getItemInfo(id?: string): Observable<ItemModel> {
+    if (id) {
+      return this.http.get<ItemModel>(`${this.host}goods/item/${id}`);
+    }
+    return of(<ItemModel>{});
   }
 
   addItemToChart(id: string): Observable<boolean> {
@@ -47,11 +50,27 @@ export class GoodsService {
         return this.http.post(`${this.host}users/cart`, {
           "id": id,
         }, {
-          headers: new HttpHeaders(`Authorization: Bearer ${token}`)
+          headers: new HttpHeaders(`Authorization: Bearer ${token}`),
+          observe:'response',
         }).pipe(
-          map(() => true)
+          map(res => res.statusText === 'OK')
         )
       })
     );
+  }
+
+  addItemToFavorites(id: string): Observable<boolean> {
+    return this.auth.checkLocalStroage().pipe(
+      switchMap((token) => {
+        return this.http.post(`${this.host}users/favorites`, {
+          "id": id,
+        }, {
+          headers: new HttpHeaders(`Authorization: Bearer ${token}`),
+          observe:'response',
+        }).pipe(
+          map(res => res.statusText === 'OK')
+        )
+      })
+    )
   }
 }

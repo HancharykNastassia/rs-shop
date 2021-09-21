@@ -1,10 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { addItemToChart } from 'src/app/redux/actions/user-actions';
+import { getUserChanges } from 'src/app/redux/actions/user-actions';
 import { AppState } from 'src/app/redux/state.models';
 import { ItemModel } from '../../models/item-models';
-import { AuthorizationService } from '../../services/authorization.service';
 import { GoodsService } from '../../services/goods.service';
 
 @Component({
@@ -15,7 +14,7 @@ import { GoodsService } from '../../services/goods.service';
 export class ItemCardComponent implements OnInit {
   @Input() item!: ItemModel;
 
-  subscrition?: Subscription;
+  subscrition = new Subscription();
 
   ratingArray?: unknown[];
 
@@ -26,8 +25,14 @@ export class ItemCardComponent implements OnInit {
   }
 
   addItemToChart(id: string) {
-    this.subscrition = this.dataService.addItemToChart(id).subscribe(() => {
-      this.store.dispatch(addItemToChart());
-    });
+    this.subscrition.add(this.dataService.addItemToChart(id).subscribe((res) => {
+      if (res) this.store.dispatch(getUserChanges());
+    }));
+  }
+
+  addItemToFavorites(id: string) {
+    this.subscrition.add(this.dataService.addItemToFavorites(id).subscribe((res) => {
+      if (res) this.store.dispatch(getUserChanges());
+    }))
   }
 }

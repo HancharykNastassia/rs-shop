@@ -11,6 +11,14 @@ export const getUserSuccess = createAction(
   props<{user?: User}>()
 );
 
-export const addItemToChart = createAction(
-  '[TO CHART BUTTON] add item to the chart'
+// export const addItemToChart = createAction(
+//   '[TO CHART BUTTON] add item to the chart'
+// );
+
+// export const addItemToFavorites = createAction(
+//   '[TO FAVORITES BUTTON] add item to the favorites'
+// );
+
+export const getUserChanges = createAction(
+  '[ITEM CONTROL BUTTONS OR ORDER] get all user changes'
 )

@@ -45,7 +45,8 @@
     class="item-button"
     mat-raised-button
     color="accent"
-    [disabled]="item.isFavourite">
+    [disabled]="item.isFavourite"
+    (click)="addItemToFavorites(item.id)">
     В Избранное
     </button>
   </div>
