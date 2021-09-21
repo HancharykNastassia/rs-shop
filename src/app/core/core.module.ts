@@ -22,6 +22,7 @@ import { ChartComponent } from './pages/chart/chart.component';
 import { MainComponent } from './pages/main/main.component';
 import { FavoriteCardComponent } from './components/favorite-card/favorite-card.component';
 import { FavotirePageComponent } from './pages/favotire-page/favotire-page.component';
+import { OrderedPopupComponent } from './components/ordered-popup/ordered-popup.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { FavotirePageComponent } from './pages/favotire-page/favotire-page.compo
     MainComponent,
     FavoriteCardComponent,
     FavotirePageComponent,
+    OrderedPopupComponent,
   ],
   imports: [
     FormsModule,

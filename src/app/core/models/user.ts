@@ -9,15 +9,15 @@ export interface User {
 export interface Order {
   items: OrderedItem[],
   details: OrderDetails,
-  id: string;
+  id?: string;
 }
 
-interface OrderedItem {
+export interface OrderedItem {
   id: string,
   amount: number
 }
 
-interface OrderDetails {
+export interface OrderDetails {
   name: string,
   address: string,
   phone: string,

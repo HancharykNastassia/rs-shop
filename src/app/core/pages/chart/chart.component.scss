@@ -1,5 +1,12 @@
 @import "../../../../variables";
 
+.no-goods {
+  padding: $std-padding;
+  font-size: 20px;
+  font-weight: bold;
+  color: $purple-color;
+}
+
 .title{
   padding: $std-padding;
   font-size: 32px;

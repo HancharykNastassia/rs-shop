@@ -1,5 +1,11 @@
 <h2 class="title">Оформление заказа</h2>
-<app-cart-card (priceEmmiter)="countTotalPrice($event)"
+<p class="no-goods"
+*ngIf="!(goods$ | async) || (goods$ | async)?.length === 0; else notEmpty">
+В корзине нет товаров
+</p>
+<ng-template #notEmpty>
+  <app-cart-card
+(priceEmmiter)="countTotalPrice($event)"
 *ngFor="let item of (goods$ | async)"
 [item]="item">
 </app-cart-card>
@@ -85,5 +91,6 @@
       Слишком длинный комментарий
     </mat-error>
   </mat-form-field>
-  <button mat-raised-button color="primary">Подтвердить заказ</button>
+  <button mat-raised-button color="primary" (click)="makeOrder()">Подтвердить заказ</button>
 </div>
+</ng-template>
