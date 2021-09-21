@@ -17,5 +17,5 @@
   <div>
     <p class="chart-price">{{(item.price * multyplier) | number:"1.2"}} BYN</p>
   </div>
-  <button mat-button color="warn">Удалить из корзины</button>
+  <button mat-button color="warn" (click)="removeItemFromChart()">Удалить из корзины</button>
 </div>
