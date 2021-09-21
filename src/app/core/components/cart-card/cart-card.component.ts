@@ -9,20 +9,13 @@ import { GoodsService } from '../../services/goods.service';
   styleUrls: ['./cart-card.component.scss']
 })
 export class CartCardComponent implements OnInit {
-  @Output() priceEmmiter = new EventEmitter<number>();
-  @Input() item$!: Observable<ItemModel>;
-  @Input() number = 1;
-  @Input() itemID!: string;
+  @Output() priceEmmiter = new EventEmitter<{id: string, multyplier: number}>();
+  @Input() item!: ItemModel;
+  @Input() multyplier = 1;
 
   constructor(private dataService: GoodsService) { }
 
   ngOnInit(): void {
-    this.item$ = this.dataService.getItemInfo(this.itemID);
-  }
-
-  emitTotalPrice(): void {
-    this.item$.subscribe((item) => {
-      this.priceEmmiter.emit(item.price * this.number);
-    });
+    this.priceEmmiter.emit({id: this.item.id, multyplier: this.multyplier});
   }
 }

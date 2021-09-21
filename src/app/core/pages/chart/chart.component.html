@@ -1,7 +1,7 @@
 <h2>Оформление заказа</h2>
 <app-cart-card (priceEmmiter)="countTotalPrice($event)"
-*ngFor="let id of (chartItemsIds$ | async)"
-[itemID]="id">
+*ngFor="let item of (goods$ | async)"
+[item]="item">
 </app-cart-card>
 <p>{{totalPrice}}</p>
 <h3>Детали заказа</h3>

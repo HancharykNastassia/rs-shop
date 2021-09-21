@@ -1,23 +1,23 @@
 <div class="chart-card">
   <div>
-    <img class="chart-image" [src]="(item$ | async)!.imageUrls[0]" alt="item photo">
-    <p>{{(item$ | async)!.name}} router link</p>
+    <img class="chart-image" [src]="item.imageUrls[0]" alt="item photo">
+    <p>{{item.name}} router link</p>
   </div>
   <div>
     <p>Description:</p>
-    <p>{{(item$ | async)!.description}}</p>
+    <p>{{item.description}}</p>
   </div>
   <input
   mat-input
   type="number"
-  [(ngModel)]="number"
+  [(ngModel)]="multyplier"
   min="1"
-  [max]="(item$ | async)!.availableAmount"
-  (change)="emitTotalPrice()">
+  [max]="item.availableAmount"
+  (change)="priceEmmiter.emit({id: item.id, multyplier: multyplier})">
   <p>Bring: today</p>
   <div>
     <p>Price:</p>
-    <p>{{(item$ | async)!.price | number:"1.2"}}</p>
+    <p>{{item.price | number:"1.2"}}</p>
   </div>
   <button>remove</button>
 </div>
