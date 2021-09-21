@@ -1,0 +1,32 @@
+@import "../../../../variables";
+
+.card{
+  &-container{
+    display: flex;
+    margin: $std-margin;
+    padding: $std-padding;
+    background-color: $white-color;
+    border-radius: $std-border-radius;
+    color: $black-color;
+  }
+  &-image{
+    height: 200px;
+    border-radius: $std-border-radius;
+    &-container{
+      display: flex;
+      justify-content: center;
+      width: 40%;
+    }
+  }
+  &-price{
+    font-size: 28px;
+    padding: $std-padding 0;
+    font-weight: bold;
+  }
+  &-button{
+    margin: $std-margin;
+  }
+  &-info {
+    padding: $min-padding;
+  }
+}
