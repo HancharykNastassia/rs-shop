@@ -9,8 +9,19 @@
     </div>
     <p class="card-price">{{item.price | number:"1.2"}} BYN</p>
     <div class="card-button-container">
-      <button class="card-button" mat-raised-button color="primary">В корзину</button>
-      <button class="card-button" mat-button color="warn">Удалить из списка</button>
+      <button
+      class="card-button"
+      mat-raised-button
+      color="primary"
+      (click)="addItemToChart()">
+      В корзину
+      </button>
+      <button
+      class="card-button"
+      mat-button color="warn"
+      (click)="removeFromFavorites()">
+      Удалить из списка
+      </button>
     </div>
   </div>
 </div>
