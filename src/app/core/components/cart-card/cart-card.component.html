@@ -1,10 +1,9 @@
 <div class="chart-card">
-  <div>
+  <div class="chart-image-container" routerLink="/details" [queryParams]="{'id': item.id}">
     <img class="chart-image" [src]="item.imageUrls[0]" alt="item photo">
-    <p>{{item.name}} router link</p>
+    <p class="chart-title">{{item.name}}</p>
   </div>
-  <div>
-    <p>Description:</p>
+  <div class="chart-description">
     <p>{{item.description}}</p>
   </div>
   <input
@@ -14,10 +13,9 @@
   min="1"
   [max]="item.availableAmount"
   (change)="priceEmmiter.emit({id: item.id, multyplier: multyplier})">
-  <p>Bring: today</p>
+  <p>Доставка: сегодня</p>
   <div>
-    <p>Price:</p>
-    <p>{{item.price | number:"1.2"}}</p>
+    <p class="chart-price">{{(item.price * multyplier) | number:"1.2"}} BYN</p>
   </div>
-  <button>remove</button>
+  <button mat-button color="warn">Удалить из корзины</button>
 </div>

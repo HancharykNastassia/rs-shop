@@ -1,0 +1,30 @@
+@import "../../../../variables";
+
+.title{
+  padding: $std-padding;
+  font-size: 32px;
+  font-weight: bold;
+  color: $black-color;
+}
+
+.price {
+  padding: $std-padding;
+  font-size: 32px;
+  font-weight: bold;
+  color: $black-color;
+  text-align: end;
+}
+
+.details{
+  &-container{
+    display: flex;
+    flex-direction: column;
+    padding: $std-padding;
+    margin: 0 auto;
+    width: 50%;
+  }
+  &-title {
+    font-size: 24px;
+    color: $purple-color;
+  }
+}

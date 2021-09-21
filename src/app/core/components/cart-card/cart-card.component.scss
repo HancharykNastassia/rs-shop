@@ -7,8 +7,30 @@
     padding: $min-padding;
     margin: $std-margin;
     align-items: center;
+    color: $black-color;
+    border-bottom: 1px solid $black-color;
+    background-color: $white-color;
   }
   &-image{
-    height: 100px;
+    height: 150px;
+    border-radius: $std-border-radius;
+    &-container{
+      width: 20%;
+    }
+  }
+  &-title{
+    font-weight: bold;
+  }
+
+  &-description {
+    padding: $std-padding;
+    width: 20%;
+    overflow: hidden;
+  }
+
+  &-price{
+    font-size: 18px;
+    font-weight: bold;
+    color: $purple-color;
   }
 }

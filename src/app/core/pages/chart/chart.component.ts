@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { forkJoin, Observable, Subscription } from 'rxjs';
-import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {AbstractControl, FormControl, FormGroupDirective, NgForm, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 import { AppState } from 'src/app/redux/state.models';
 import { ItemModel } from '../../models/item-models';
 import { ErrorStateMatcher } from '@angular/material/core';
@@ -27,6 +27,7 @@ export class ChartComponent implements OnInit, OnDestroy {
   @Input() telNumber?: string;
   @Input() dateTime?: string;
   @Input() comments?: string;
+  @Input() currentDate = new Date().toISOString().split('T')[0];
 
   nameInput = new FormControl('', [
     Validators.required,
@@ -41,10 +42,13 @@ export class ChartComponent implements OnInit, OnDestroy {
   telInput = new FormControl('',[
     Validators.required,
     Validators.pattern('([+]?[0-9])*'),
+  ]);
+  dateInput = new FormControl('',[
+    Validators.required,
   ])
   commentInput = new FormControl('',[
     Validators.maxLength(250),
-  ])
+  ]);
 
   matcher = new MyErrorStateMatcher();
   subscription!: Subscription;
