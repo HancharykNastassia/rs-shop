@@ -23,6 +23,8 @@ import { MainComponent } from './pages/main/main.component';
 import { FavoriteCardComponent } from './components/favorite-card/favorite-card.component';
 import { FavotirePageComponent } from './pages/favotire-page/favotire-page.component';
 import { OrderedPopupComponent } from './components/ordered-popup/ordered-popup.component';
+import { OrderItemComponent } from './components/order-item/order-item.component';
+import { OrderPageComponent } from './pages/order-page/order-page.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { OrderedPopupComponent } from './components/ordered-popup/ordered-popup.
     FavoriteCardComponent,
     FavotirePageComponent,
     OrderedPopupComponent,
+    OrderItemComponent,
+    OrderPageComponent,
   ],
   imports: [
     FormsModule,
@@ -60,6 +64,8 @@ import { OrderedPopupComponent } from './components/ordered-popup/ordered-popup.
     CategoryPageComponent,
     DetailsPageComponent,
     ChartComponent,
-    FavotirePageComponent],
+    FavotirePageComponent,
+    OrderPageComponent,
+  ],
 })
 export class CoreModule {}

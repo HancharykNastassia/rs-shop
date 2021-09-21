@@ -23,7 +23,7 @@ export class FavotirePageComponent implements OnInit, OnDestroy {
         this.goods$ = forkJoin(ids.map(id => this.dataService.getItemInfo(id)));
       }
     }
-    )
+    );
   }
 
   ngOnDestroy(): void {
