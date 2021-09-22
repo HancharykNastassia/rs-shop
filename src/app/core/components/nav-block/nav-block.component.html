@@ -22,6 +22,9 @@
       <mat-option *ngFor="let item of searchItems$ | async">
         <p routerLink="/details" [queryParams]="{'id': item.id}">{{item.name}}</p>
       </mat-option>
+      <mat-option *ngFor="let cat of searchCategories$ | async">
+        <p routerLink="/category" [queryParams]="{'category': cat.id}">{{cat.name}}</p>
+      </mat-option>
     </mat-autocomplete>
   </div>
   <div class="nav-block_button_container">

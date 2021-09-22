@@ -25,6 +25,7 @@ export class NavBlockComponent implements OnInit{
 
   searchInputControl = new FormControl();
   searchItems$?: Observable<ItemModel[]>;
+  searchCategories$?: Observable<CategoryModel[]>
   login?: string;
   password?: string;
 
@@ -42,6 +43,14 @@ export class NavBlockComponent implements OnInit{
       switchMap(value => this.dataService.searchItem(value).pipe(
         map(item => item.filter((item, index) => index < 5))
       ))
+    );
+    this.searchCategories$ = this.searchInputControl.valueChanges.pipe(
+      debounceTime(100),
+      distinctUntilChanged(),
+      filter<string>(value => value.length > 2),
+      switchMap(value => this.store.select((state)=> state.categories.categories.filter(
+        cat => cat.name.includes(value)
+      )))
     );
   }
 
