@@ -9,6 +9,7 @@ import { ItemModel } from '../../models/item-models';
 import { Order } from '../../models/user';
 import { GoodsService } from '../../services/goods.service';
 import { OrderedPopupComponent } from '../ordered-popup/ordered-popup.component';
+import { UpdateOrderDialogComponent } from '../update-order-dialog/update-order-dialog.component';
 
 @Component({
   selector: 'app-order-item',
@@ -49,5 +50,12 @@ export class OrderItemComponent implements OnInit {
         })
       )
     }
+  }
+
+  changeOrderDetails() {
+    this.dialog.open(UpdateOrderDialogComponent, {
+      width: '500px',
+      data: {id: this.order.id, orderDetails: this.order.details}
+    });
   }
 }

@@ -4,7 +4,7 @@ import { Observable, of} from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { CategoryModel } from '../models/category-models';
 import { ItemModel } from '../models/item-models';
-import { Order } from '../models/user';
+import { Order, OrderDetails } from '../models/user';
 import { AuthorizationService } from './authorization.service';
 
 @Injectable({
@@ -93,6 +93,22 @@ export class GoodsService {
         return this.http.delete(`${this.host}users/order`,{
           headers: new HttpHeaders(`Authorization: Bearer ${token}`),
           params: new HttpParams().set("id", id),
+          observe:'response',
+        }).pipe(
+          map(res => res.ok)
+        )
+      })
+    );
+  }
+
+  changeOrderDetais(id: string, details: OrderDetails): Observable<boolean>{
+    return this.auth.checkLocalStroage().pipe(
+      switchMap((token) => {
+        return this.http.put(`${this.host}users/order`,{
+          "id": id,
+          "details": details,
+        },{
+          headers: new HttpHeaders(`Authorization: Bearer ${token}`),
           observe:'response',
         }).pipe(
           map(res => res.ok)

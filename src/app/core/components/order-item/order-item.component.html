@@ -44,7 +44,13 @@
         routerLink='/order-list'>
         Отменить заказ
         </button>
-        <button class="btn" mat-button color="primary">Изменить детали заказа</button>
+        <button
+        class="btn"
+        mat-button
+        color="primary"
+        (click)="changeOrderDetails()">
+        Изменить детали заказа
+      </button>
       </div>
     </div>
   </mat-expansion-panel>

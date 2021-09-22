@@ -1,0 +1,88 @@
+<div class="details-container">
+  <h3 class="details-title">Детали заказа</h3>
+  <mat-form-field appearance="fill">
+    <mat-label>ФИО</mat-label>
+    <input
+    matInput
+    [formControl]="nameInput"
+    [errorStateMatcher]="matcher"
+    required
+    [(ngModel)]="name">
+    <mat-error *ngIf="nameInput.hasError('minlength')">
+    Слишком короткое имя
+    </mat-error>
+    <mat-error *ngIf="nameInput.hasError('maxlength')">
+      Слишком длинное имя
+    </mat-error>
+    <mat-error *ngIf="nameInput.hasError('required')">
+      Поле не может быть пустым
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Адрес доставки</mat-label>
+    <input
+    matInput
+    [(ngModel)]="adress"
+    [formControl]="adressInput"
+    [errorStateMatcher]="matcher"
+    required>
+    <mat-error *ngIf="adressInput.hasError('minlength')">
+      Слишком короткий адрес
+    </mat-error>
+    <mat-error *ngIf="adressInput.hasError('maxlength')">
+      Слишком длинный адрес
+    </mat-error>
+    <mat-error *ngIf="adressInput.hasError('required')">
+      Поле не может быть пустым
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Номер телефона</mat-label>
+    <input
+    type="tel"
+    matInput
+    [(ngModel)]="telNumber"
+    [formControl]="telInput"
+    [errorStateMatcher]="matcher"
+    required>
+    <mat-error *ngIf="telInput.hasError('pattern')">
+      Неверный формат ввода
+    </mat-error>
+    <mat-error *ngIf="telInput.hasError('required')">
+      Поле не может быть пустым
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Дата доставки</mat-label>
+    <input
+    type="date"
+    matInput
+    [(ngModel)]="dateTime"
+    [min]="currentDate"
+    required>
+    <mat-error *ngIf="dateInput.hasError('required')">
+      Поле не может быть пустым
+    </mat-error>
+    <mat-error *ngIf="dateInput.hasError('min')">
+      Введите подходящую дату
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Комментарии к заказу</mat-label>
+    <textarea
+      matInput
+      [(ngModel)]="comments"
+      [formControl]="commentInput"
+      [errorStateMatcher]="matcher">
+    </textarea>
+    <mat-error *ngIf="commentInput.hasError('maxlength')">
+      Слишком длинный комментарий
+    </mat-error>
+  </mat-form-field>
+  <button
+  mat-raised-button
+  color="primary"
+  (click)="isPopup ? changeOrderDetails() : makeOrder()">
+  Подтвердить заказ
+  </button>
+</div>
