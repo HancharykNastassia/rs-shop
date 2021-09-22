@@ -27,6 +27,7 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
   subcategory?: string;
   itemsReqCount = 10;
   reqStartPosition = 0;
+  sortBy?: string;
 
   constructor(
     private dataService: GoodsService,
@@ -58,27 +59,50 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
   }
 
   sortPrice(): void {
+    this.sortBy = 'price';
     if (this.sortCriteria === SortCriteria.price) {
       this.sortIsAsc = !this.sortIsAsc;
     } else {
       this.sortCriteria = SortCriteria.price;
       this.sortIsAsc = true;
     }
+    this.goods$ = this.dataService.getGoodsFrom(
+      this.category,
+      this.subcategory,
+      this.reqStartPosition,
+      this.itemsReqCount,
+      this.sortBy,
+      !this.sortIsAsc
+    );
   }
 
   sortPopularity(): void {
+    this.sortBy = 'rating';
     if (this.sortCriteria === SortCriteria.popularity) {
       this.sortIsAsc = !this.sortIsAsc;
     } else {
       this.sortCriteria = SortCriteria.popularity;
       this.sortIsAsc = true;
     }
+    this.goods$ = this.dataService.getGoodsFrom(
+      this.category,
+      this.subcategory,
+      this.reqStartPosition,
+      this.itemsReqCount,
+      this.sortBy,
+      this.sortIsAsc
+    )
   }
 
   showMore() {
     this.reqStartPosition+=10;
     this.goods$ = this.dataService.getGoodsFrom(
-      this.category, this.subcategory, this.reqStartPosition, this.itemsReqCount
+      this.category,
+      this.subcategory,
+      this.reqStartPosition,
+      this.itemsReqCount,
+      this.sortBy,
+      !this.sortIsAsc
     ).pipe(mergeScan((acc, item) => {
       return of([...acc, ...item]);
     }, this.goods),

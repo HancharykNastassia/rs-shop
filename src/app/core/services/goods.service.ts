@@ -29,19 +29,27 @@ export class GoodsService {
   category: string,
   subcategory?: string,
   startPosition?: number,
-  countNumber?: number): Observable<ItemModel[]> {
+  countNumber?: number,
+  sortBy?: string,
+  reverse?: boolean): Observable<ItemModel[]> {
     let path = `${this.host}goods/category/${category}`;
     if (subcategory) {
       path = `${path}/${subcategory}`;
     }
-    if (typeof(startPosition) !=='undefined' && typeof(countNumber) !== 'undefined') {
-      const reqParams = new HttpParams().appendAll({
-        start: startPosition,
-        count: countNumber,
-      });
-      return this.http.get<ItemModel[]>(path, {params: reqParams});
+    let params: HttpParams | undefined;
+    if (typeof(startPosition) === 'number') {
+      params = new HttpParams().set('start', startPosition);
     }
-    return this.http.get<ItemModel[]>(path);
+    if (typeof(countNumber) === 'number') {
+      params = (params || new HttpParams()).set('count', countNumber);
+    }
+    if (sortBy) {
+      params = (params || new HttpParams()).set('sortBy', sortBy);
+    }
+    if (typeof(reverse) === "boolean") {
+      params= (params || new HttpParams()).set('reverse', reverse);
+    }
+    return this.http.get<ItemModel[]>(path, {params});
   }
 
   getItemInfo(id?: string): Observable<ItemModel> {

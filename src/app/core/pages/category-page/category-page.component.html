@@ -23,7 +23,7 @@
 </p>
 <div class="card-comtainer">
   <app-item-card
-  *ngFor="let item of (goods$ | async)! | sort:sortCriteria:sortIsAsc"
+  *ngFor="let item of (goods$ | async)"
   [item]="item">
 </app-item-card>
 </div>
