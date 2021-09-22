@@ -1,9 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
 import { forkJoin, Observable, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { getUserChanges } from 'src/app/redux/actions/user-actions';
+import { AppState } from 'src/app/redux/state.models';
 import { ItemModel } from '../../models/item-models';
 import { Order } from '../../models/user';
 import { GoodsService } from '../../services/goods.service';
+import { OrderedPopupComponent } from '../ordered-popup/ordered-popup.component';
 
 @Component({
   selector: 'app-order-item',
@@ -15,11 +20,11 @@ export class OrderItemComponent implements OnInit {
   @Input() id!: number;
   @Input() items$!: Observable<ItemModel[]>;
 
-  subscription!: Subscription;
+  subscription = new Subscription();
   totalCost = 0;
   panelOpenState = false;
 
-  constructor(private dataService: GoodsService) { }
+  constructor(public dialog: MatDialog, private dataService: GoodsService, private store: Store<AppState>) { }
 
   ngOnInit(): void {
     this.items$ = forkJoin(this.order.items.map(item => this.dataService.getItemInfo(item.id))).pipe(
@@ -31,5 +36,18 @@ export class OrderItemComponent implements OnInit {
 
   getItemAmmount(itemId: string): number {
     return this.order.items.find(o => o.id === itemId)?.amount || 0;
+  }
+
+  cancelOrder(): void {
+    if (this.order.id) {
+      this.subscription.add(
+        this.dataService.cancelOrder(this.order.id).subscribe((res) => {
+          if (res) {
+            this.dialog.open(OrderedPopupComponent, {data: "Ваш заказ отменен"});
+            this.store.dispatch(getUserChanges());
+          }
+        })
+      )
+    }
   }
 }

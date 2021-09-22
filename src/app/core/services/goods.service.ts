@@ -54,7 +54,7 @@ export class GoodsService {
           headers: new HttpHeaders(`Authorization: Bearer ${token}`),
           observe:'response',
         }).pipe(
-          map(res => res.statusText === 'OK')
+          map(res => res.ok)
         )
       })
     );
@@ -68,7 +68,7 @@ export class GoodsService {
           params: new HttpParams().set("id", id),
           observe:'response',
         }).pipe(
-          map(res => res.statusText === 'OK')
+          map(res => res.ok)
         )
       })
     );
@@ -81,7 +81,21 @@ export class GoodsService {
           headers: new HttpHeaders(`Authorization: Bearer ${token}`),
           observe:'response',
         }).pipe(
-          map(res => res.statusText === 'OK')
+          map(res => res.ok)
+        )
+      })
+    );
+  }
+
+  cancelOrder(id: string): Observable<boolean> {
+    return this.auth.checkLocalStroage().pipe(
+      switchMap((token) => {
+        return this.http.delete(`${this.host}users/order`,{
+          headers: new HttpHeaders(`Authorization: Bearer ${token}`),
+          params: new HttpParams().set("id", id),
+          observe:'response',
+        }).pipe(
+          map(res => res.ok)
         )
       })
     );
@@ -96,7 +110,7 @@ export class GoodsService {
           headers: new HttpHeaders(`Authorization: Bearer ${token}`),
           observe:'response',
         }).pipe(
-          map(res => res.statusText === 'OK')
+          map(res => res.ok)
         )
       })
     )
@@ -110,7 +124,7 @@ export class GoodsService {
           params: new HttpParams().set("id", id),
           observe:'response',
         }).pipe(
-          map(res => res.statusText === 'OK')
+          map(res => res.ok)
         )
       })
     );

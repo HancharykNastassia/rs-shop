@@ -87,7 +87,7 @@ export class ChartComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.dataService.makeOrder(this.buildOrder()).subscribe(res => {
         if (res) {
-          this.dialog.open(OrderedPopupComponent);
+          this.dialog.open(OrderedPopupComponent, {data: "Ваш заказ создан успешно, ожидайте доставку в указанное время"});
           this.store.dispatch(getUserChanges());
         }
       })

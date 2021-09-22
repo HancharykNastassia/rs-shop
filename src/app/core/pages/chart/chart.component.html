@@ -91,6 +91,12 @@
       Слишком длинный комментарий
     </mat-error>
   </mat-form-field>
-  <button mat-raised-button color="primary" (click)="makeOrder()">Подтвердить заказ</button>
+  <button
+  mat-raised-button
+  color="primary"
+  (click)="makeOrder()"
+  routerLink="/chart">
+  Подтвердить заказ
+  </button>
 </div>
 </ng-template>

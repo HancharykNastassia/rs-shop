@@ -36,7 +36,14 @@
         <p>{{order.details.comment}}</p>
       </div>
       <div>
-        <button class="btn" mat-raised-button color="warn">Отменить заказ</button>
+        <button
+        class="btn"
+        mat-raised-button
+        color="warn"
+        (click)="cancelOrder()"
+        routerLink='/order-list'>
+        Отменить заказ
+        </button>
         <button class="btn" mat-button color="primary">Изменить детали заказа</button>
       </div>
     </div>
