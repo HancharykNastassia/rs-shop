@@ -12,7 +12,17 @@
     </ng-template>
     Каталог
   </button>
-    <input class="nav-block_input white-button" matInput placeholder="Search goods">
+    <input
+    class="nav-block_input white-button"
+    matInput
+    placeholder="Search goods"
+    [formControl]="searchInputControl"
+    [matAutocomplete]="auto">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option *ngFor="let item of searchItems$ | async">
+        <p routerLink="/details" [queryParams]="{'id': item.id}">{{item.name}}</p>
+      </mat-option>
+    </mat-autocomplete>
   </div>
   <div class="nav-block_button_container">
     <button

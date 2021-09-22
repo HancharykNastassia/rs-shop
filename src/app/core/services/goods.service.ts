@@ -15,6 +15,12 @@ export class GoodsService {
 
   constructor(private http: HttpClient, private auth: AuthorizationService) {}
 
+  searchItem(q: string): Observable<ItemModel[]> {
+    return q ? this.http.get<ItemModel[]>(`${this.host}goods/search`,{
+      params: new HttpParams().set("text", q),
+    }) : of(<ItemModel[]>[]);
+  }
+
   getCategoriesList(): Observable<CategoryModel[]> {
     return this.http.get<CategoryModel[]>(`${this.host}categories`);
   }
