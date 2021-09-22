@@ -12,6 +12,7 @@ import { GoodsService } from '../../services/goods.service';
 })
 export class OrderItemComponent implements OnInit {
   @Input() order!: Order;
+  @Input() id!: number;
   @Input() items$!: Observable<ItemModel[]>;
 
   subscription!: Subscription;

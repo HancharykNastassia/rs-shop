@@ -1,2 +1,8 @@
 <h2 class="title">Избранное</h2>
-<app-favorite-card *ngFor="let item of (goods$ | async)" [item]="item"></app-favorite-card>
+<p class="no-goods"
+*ngIf="!(goods$ | async) || (goods$ | async)?.length === 0; else notEmpty">
+У вас нет товаров в списке избранных
+</p>
+<ng-template #notEmpty>
+  <app-favorite-card *ngFor="let item of (goods$ | async)" [item]="item"></app-favorite-card>
+</ng-template>

@@ -1,2 +1,12 @@
-<p>order-page works!</p>
-<app-order-item *ngFor="let order of (orders$ | async)" [order]="order"></app-order-item>
+<h2 class="title">Лист ожидания заказов</h2>
+<p class="no-orders"
+*ngIf="!(orders$ | async) || (orders$ | async)!.length === 0; else orders">
+У вас нет активных заказов
+</p>
+<ng-template #orders>
+  <app-order-item
+  *ngFor="let order of (orders$ | async); index as i"
+  [order]="order"
+  [id]="i + 1">
+</app-order-item>
+</ng-template>
