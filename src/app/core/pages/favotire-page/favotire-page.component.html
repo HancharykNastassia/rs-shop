@@ -1,6 +1,6 @@
 <h2 class="title">Избранное</h2>
 <p class="no-goods"
-*ngIf="!(goods$ | async) || (goods$ | async)?.length === 0; else notEmpty">
+*ngIf="(goods$ | async) === null; else notEmpty">
 У вас нет товаров в списке избранных
 </p>
 <ng-template #notEmpty>

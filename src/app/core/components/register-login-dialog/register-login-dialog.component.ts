@@ -1,5 +1,5 @@
-import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, Input, OnDestroy } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { getUser } from 'src/app/redux/actions/user-actions';

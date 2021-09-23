@@ -30,7 +30,8 @@ import { HttpReqInterceptor } from './core/interceptors/http-req.interceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: HttpReqInterceptor,
       multi: true,
-    }],
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

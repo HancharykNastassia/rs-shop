@@ -1,6 +1,6 @@
 <h2 class="title">Оформление заказа</h2>
 <p class="no-goods"
-*ngIf="!(goods$ | async) || (goods$ | async)?.length === 0; else notEmpty">
+*ngIf="(goods$ | async) === null; else notEmpty">
 В корзине нет товаров
 </p>
 <ng-template #notEmpty>

@@ -2,7 +2,6 @@ import {
   Component,
   Input,
   OnDestroy,
-  OnInit,
   Output,
   EventEmitter,
 } from '@angular/core';
@@ -41,7 +40,7 @@ export class FormErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './order-details-form.component.html',
   styleUrls: ['./order-details-form.component.scss'],
 })
-export class OrderDetailsFormComponent implements OnInit, OnDestroy {
+export class OrderDetailsFormComponent implements OnDestroy {
   @Output() closeEmmiter = new EventEmitter<any>();
 
   @Input() name?: string;
@@ -92,8 +91,6 @@ export class OrderDetailsFormComponent implements OnInit, OnDestroy {
     private dataService: GoodsService,
     private store: Store<AppState>
   ) {}
-
-  ngOnInit(): void {}
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();

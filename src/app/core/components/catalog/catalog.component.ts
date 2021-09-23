@@ -1,4 +1,3 @@
-import { state } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';

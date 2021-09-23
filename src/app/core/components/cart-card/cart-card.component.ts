@@ -7,7 +7,7 @@ import {
   Output,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, of, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { getUserChanges } from 'src/app/redux/actions/user-actions';
 import { AppState } from 'src/app/redux/state.models';
 import { ItemModel } from '../../models/item-models';

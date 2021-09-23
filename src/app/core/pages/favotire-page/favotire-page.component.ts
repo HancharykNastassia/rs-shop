@@ -1,14 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { forkJoin, Observable, of, Subscription } from 'rxjs';
-import {
-  concatAll,
-  map,
-  mergeAll,
-  mergeMap,
-  switchMap,
-  take,
-} from 'rxjs/operators';
+import { forkJoin, Observable, Subscription } from 'rxjs';
 import { AppState } from 'src/app/redux/state.models';
 import { ItemModel } from '../../models/item-models';
 import { GoodsService } from '../../services/goods.service';

@@ -25,7 +25,7 @@ import { RegisterLoginDialogComponent } from '../register-login-dialog/register-
   styleUrls: ['./nav-block.component.scss'],
 })
 export class NavBlockComponent implements OnInit {
-  @Output() onCatalogBtnClick = new EventEmitter<any>();
+  @Output() catalogBtnClick = new EventEmitter<any>();
 
   @Input() isCatalogOpen = false;
 
@@ -57,7 +57,7 @@ export class NavBlockComponent implements OnInit {
       switchMap((value) =>
         this.dataService
           .searchItem(value)
-          .pipe(map((item) => item.filter((item, index) => index < 5)))
+          .pipe(map((item) => item.splice(6, item.length + 1)))
       )
     );
     this.searchCategories$ = this.searchInputControl.valueChanges.pipe(
@@ -66,7 +66,9 @@ export class NavBlockComponent implements OnInit {
       filter<string>((value) => value.length > 2),
       switchMap((value) =>
         this.store.select((state) =>
-          state.categories.categories.filter((cat) => cat.name.includes(value))
+          state.categories.categories.filter((cat) =>
+            cat.name.toLowerCase().includes(value)
+          )
         )
       )
     );
@@ -74,7 +76,7 @@ export class NavBlockComponent implements OnInit {
 
   toggleCatalog() {
     this.isCatalogOpen = !this.isCatalogOpen;
-    this.onCatalogBtnClick.emit();
+    this.catalogBtnClick.emit();
   }
 
   openDialog(): void {

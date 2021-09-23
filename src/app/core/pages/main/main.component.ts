@@ -14,6 +14,7 @@ import { GoodsService } from '../../services/goods.service';
 })
 export class MainComponent implements OnInit {
   @Input() firstSlides$!: Observable<ItemModel[]>;
+
   @Input() secondSlides$!: Observable<ItemModel[][]>;
 
   firstOptions: OwlOptions = {
@@ -67,18 +68,43 @@ export class MainComponent implements OnInit {
     },
     nav: true,
   };
-  constructor(private store: Store<AppState>, private dataService: GoodsService) {}
+
+  constructor(
+    private store: Store<AppState>,
+    private dataService: GoodsService
+  ) {}
 
   ngOnInit(): void {
-    this.firstSlides$ = this.store.select((state) => state.categories.categories).pipe(
-      switchMap(cats => forkJoin(cats.map(cat => this.dataService.getGoodsFrom(cat.id, undefined, 0, 2).pipe(
-        map(item => item[0].imageUrls[0] ? item[0] : item[1])
-      ))))
-    );
-    this.secondSlides$ = this.store.select((state) => state.categories.categories).pipe(
-      switchMap(cats => forkJoin(cats.map((cat) => this.dataService.getGoodsFrom(
-        cat.id, undefined, 0, 6, 'rating', true)
-      )))
-    )
+    this.firstSlides$ = this.store
+      .select((state) => state.categories.categories)
+      .pipe(
+        switchMap((cats) =>
+          forkJoin(
+            cats.map((cat) =>
+              this.dataService
+                .getGoodsFrom(cat.id, undefined, 0, 2)
+                .pipe(map((item) => (item[0].imageUrls[0] ? item[0] : item[1])))
+            )
+          )
+        )
+      );
+    this.secondSlides$ = this.store
+      .select((state) => state.categories.categories)
+      .pipe(
+        switchMap((cats) =>
+          forkJoin(
+            cats.map((cat) =>
+              this.dataService.getGoodsFrom(
+                cat.id,
+                undefined,
+                0,
+                6,
+                'rating',
+                true
+              )
+            )
+          )
+        )
+      );
   }
 }

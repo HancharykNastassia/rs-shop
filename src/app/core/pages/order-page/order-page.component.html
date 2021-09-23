@@ -1,6 +1,6 @@
 <h2 class="title">Лист ожидания заказов</h2>
 <p class="no-orders"
-*ngIf="!(orders$ | async) || (orders$ | async)!.length === 0; else orders">
+*ngIf="(orders$ | async)?.length === 0; else orders">
 У вас нет активных заказов
 </p>
 <ng-template #orders>

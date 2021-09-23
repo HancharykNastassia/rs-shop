@@ -3,22 +3,24 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable()
 export class HttpReqInterceptor implements HttpInterceptor {
   host = 'http://localhost:3004/';
-  toIntercept = ["categories", "goods", "users"];
 
-  constructor() {}
+  toIntercept = ['categories', 'goods', 'users'];
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+  intercept(
+    request: HttpRequest<unknown>,
+    next: HttpHandler
+  ): Observable<HttpEvent<unknown>> {
     const start = this.toIntercept.find((str) => request.url.startsWith(str));
     if (start) {
       const req = request.clone({
-        url: `${this.host}${request.url}`
+        url: `${this.host}${request.url}`,
       });
       return next.handle(req);
     }

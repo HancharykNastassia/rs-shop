@@ -1,8 +1,8 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { combineLatest, concat, Observable, of, Subscription } from 'rxjs';
-import { map, mergeScan, scan, startWith } from 'rxjs/operators';
+import { Observable, of, Subscription } from 'rxjs';
+import { map, mergeScan } from 'rxjs/operators';
 import { AppState } from 'src/app/redux/state.models';
 import { CategoryModel } from '../../models/category-models';
 import { ItemModel } from '../../models/item-models';
@@ -48,8 +48,8 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscription = this.route.queryParams.subscribe((params) => {
       this.reqStartPosition = 0;
-      (this.category = params.category),
-        (this.subcategory = params.subcategory);
+      this.category = params.category;
+      this.subcategory = params.subcategory;
       this.goods$ = this.dataService
         .getGoodsFrom(
           this.category,

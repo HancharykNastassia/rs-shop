@@ -1,23 +1,8 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { forkJoin, Observable, Subscription } from 'rxjs';
-import {
-  FormControl,
-  FormGroupDirective,
-  NgForm,
-  ValidationErrors,
-  ValidatorFn,
-  Validators,
-} from '@angular/forms';
 import { AppState } from 'src/app/redux/state.models';
 import { ItemModel } from '../../models/item-models';
-import { ErrorStateMatcher } from '@angular/material/core';
 import { GoodsService } from '../../services/goods.service';
 import { OrderedItem } from '../../models/user';
 import { MatDialog } from '@angular/material/dialog';

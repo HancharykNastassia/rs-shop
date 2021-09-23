@@ -1,6 +1,6 @@
 <div class="header">
   <app-info-block></app-info-block>
-  <app-nav-block (onCatalogBtnClick)="toggleCatalog()"></app-nav-block>
+  <app-nav-block (catalogBtnClick)="toggleCatalog()"></app-nav-block>
   <app-catalog *ngIf="showCatalog; else navBlock"></app-catalog>
   <ng-template #navBlock>
     <app-category-nav-block></app-category-nav-block>
