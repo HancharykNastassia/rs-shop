@@ -10,8 +10,16 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class ContactsComponent {
   panelOpenState = false;
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer){
-    iconRegistry.addSvgIcon('viber', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/free-icon-viber-2111705.svg'));
-    iconRegistry.addSvgIcon('telegram', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/telegram.svg'));
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+    iconRegistry.addSvgIcon(
+      'viber',
+      sanitizer.bypassSecurityTrustResourceUrl(
+        'assets/icons/free-icon-viber-2111705.svg'
+      )
+    );
+    iconRegistry.addSvgIcon(
+      'telegram',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/telegram.svg')
+    );
   }
 }

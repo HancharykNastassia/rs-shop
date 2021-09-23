@@ -12,14 +12,17 @@ import { GoodsService } from '../../services/goods.service';
 @Component({
   selector: 'app-details-page',
   templateUrl: './details-page.component.html',
-  styleUrls: ['./details-page.component.scss']
+  styleUrls: ['./details-page.component.scss'],
 })
 export class DetailsPageComponent implements OnInit, OnDestroy {
   @Input() item!: Observable<ItemModel>;
 
   subscription!: Subscription;
+
   id!: string;
+
   isInChart$!: Observable<boolean>;
+
   isInFavorite$!: Observable<boolean>;
 
   owlOptions: OwlOptions = {
@@ -32,47 +35,58 @@ export class DetailsPageComponent implements OnInit, OnDestroy {
     navText: ['<', '>'],
     responsive: {
       0: {
-        items: 1
+        items: 1,
       },
       400: {
-        items: 1
+        items: 1,
       },
       740: {
-        items: 1
+        items: 1,
       },
       940: {
-        items: 1
-      }
+        items: 1,
+      },
     },
-    nav: true
-  }
+    nav: true,
+  };
 
-  constructor(private dataService: GoodsService,
-              private route: ActivatedRoute,
-              private store: Store<AppState>) { }
+  constructor(
+    private dataService: GoodsService,
+    private route: ActivatedRoute,
+    private store: Store<AppState>
+  ) {}
 
   ngOnInit(): void {
-    this.subscription = this.route.queryParams.subscribe((params) =>
-      this.item = this.dataService.getItemInfo(params['id']).pipe(
-        tap(item => this.id = item.id)
-      )
+    this.subscription = this.route.queryParams.subscribe(
+      (params) =>
+        (this.item = this.dataService
+          .getItemInfo(params.id)
+          .pipe(tap((item) => (this.id = item.id))))
     );
-    this.isInChart$ = this.store.select((state) => state.user.user?.cart).pipe(
-      switchMap(ids => this.item.pipe(
-          map(item => {
-            if (ids) return Boolean(ids.find((id) => id === item.id));
-            return false;
-          })
-        ))
-    );
-    this.isInFavorite$ = this.store.select((state) => state.user.user?.favorites).pipe(
-      switchMap(ids => this.item.pipe(
-        map(item => {
-          if (ids) return Boolean(ids.find((id) => id === item.id));
-          return false;
-        })
-      ))
-    );
+    this.isInChart$ = this.store
+      .select((state) => state.user.user?.cart)
+      .pipe(
+        switchMap((ids) =>
+          this.item.pipe(
+            map((item) => {
+              if (ids) return Boolean(ids.find((id) => id === item.id));
+              return false;
+            })
+          )
+        )
+      );
+    this.isInFavorite$ = this.store
+      .select((state) => state.user.user?.favorites)
+      .pipe(
+        switchMap((ids) =>
+          this.item.pipe(
+            map((item) => {
+              if (ids) return Boolean(ids.find((id) => id === item.id));
+              return false;
+            })
+          )
+        )
+      );
   }
 
   ngOnDestroy(): void {
@@ -81,15 +95,15 @@ export class DetailsPageComponent implements OnInit, OnDestroy {
 
   addToChart(): void {
     this.subscription.add(
-      this.dataService.addItemToChart(this.id).subscribe(res => {
+      this.dataService.addItemToChart(this.id).subscribe((res) => {
         if (res) this.store.dispatch(getUserChanges());
       })
-    )
+    );
   }
 
   addToFavorites(): void {
     this.subscription.add(
-      this.dataService.addItemToFavorites(this.id).subscribe(res => {
+      this.dataService.addItemToFavorites(this.id).subscribe((res) => {
         if (res) this.store.dispatch(getUserChanges());
       })
     );

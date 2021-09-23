@@ -3,7 +3,13 @@ import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { debounceTime, distinctUntilChanged, filter, map, switchMap } from 'rxjs/operators';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  map,
+  switchMap,
+} from 'rxjs/operators';
 import { getUser } from 'src/app/redux/actions/user-actions';
 import { AppState } from 'src/app/redux/state.models';
 import { CategoryModel } from '../../models/category-models';
@@ -16,45 +22,57 @@ import { RegisterLoginDialogComponent } from '../register-login-dialog/register-
 @Component({
   selector: 'app-nav-block',
   templateUrl: './nav-block.component.html',
-  styleUrls: ['./nav-block.component.scss']
+  styleUrls: ['./nav-block.component.scss'],
 })
-export class NavBlockComponent implements OnInit{
+export class NavBlockComponent implements OnInit {
   @Output() onCatalogBtnClick = new EventEmitter<any>();
+
   @Input() isCatalogOpen = false;
-  @Input() user$!: Observable<User | undefined>
+
+  @Input() user$!: Observable<User | undefined>;
 
   searchInputControl = new FormControl();
+
   searchItems$?: Observable<ItemModel[]>;
-  searchCategories$?: Observable<CategoryModel[]>
+
+  searchCategories$?: Observable<CategoryModel[]>;
+
   login?: string;
+
   password?: string;
 
-  constructor(public dialog: MatDialog,
-              private userService: AuthorizationService,
-              private dataService: GoodsService,
-              private store: Store<AppState>) {}
+  constructor(
+    public dialog: MatDialog,
+    private userService: AuthorizationService,
+    private dataService: GoodsService,
+    private store: Store<AppState>
+  ) {}
 
   ngOnInit(): void {
     this.user$ = this.store.select((state) => state.user.user);
     this.searchItems$ = this.searchInputControl.valueChanges.pipe(
       debounceTime(100),
       distinctUntilChanged(),
-      filter<string>(value => value.length > 2),
-      switchMap(value => this.dataService.searchItem(value).pipe(
-        map(item => item.filter((item, index) => index < 5))
-      ))
+      filter<string>((value) => value.length > 2),
+      switchMap((value) =>
+        this.dataService
+          .searchItem(value)
+          .pipe(map((item) => item.filter((item, index) => index < 5)))
+      )
     );
     this.searchCategories$ = this.searchInputControl.valueChanges.pipe(
       debounceTime(100),
       distinctUntilChanged(),
-      filter<string>(value => value.length > 2),
-      switchMap(value => this.store.select((state)=> state.categories.categories.filter(
-        cat => cat.name.includes(value)
-      )))
+      filter<string>((value) => value.length > 2),
+      switchMap((value) =>
+        this.store.select((state) =>
+          state.categories.categories.filter((cat) => cat.name.includes(value))
+        )
+      )
     );
   }
 
-  toggleCatalog(){
+  toggleCatalog() {
     this.isCatalogOpen = !this.isCatalogOpen;
     this.onCatalogBtnClick.emit();
   }
@@ -65,6 +83,6 @@ export class NavBlockComponent implements OnInit{
 
   logOut(): void {
     this.userService.logoutUser();
-    this.store.dispatch(getUser({token: ''}))
+    this.store.dispatch(getUser({ token: '' }));
   }
 }

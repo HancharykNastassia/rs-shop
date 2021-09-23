@@ -1,7 +1,7 @@
-import { CategoryModel } from "../core/models/category-models";
-import { User } from "../core/models/user";
+import { CategoryModel } from '../core/models/category-models';
+import { User } from '../core/models/user';
 
-export interface AppState{
+export interface AppState {
   categories: CategoriesState;
   user: UserState;
 }
@@ -16,8 +16,8 @@ export interface CategoriesState {
 
 export const initialUserState: UserState = {
   user: undefined,
-}
+};
 
 export const initialCategoriesState: CategoriesState = {
   categories: [],
-}
+};

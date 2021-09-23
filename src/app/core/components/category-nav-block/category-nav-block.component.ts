@@ -11,17 +11,23 @@ import { GoodsService } from '../../services/goods.service';
 @Component({
   selector: 'app-category-nav-block',
   templateUrl: './category-nav-block.component.html',
-  styleUrls: ['./category-nav-block.component.scss']
+  styleUrls: ['./category-nav-block.component.scss'],
 })
 export class CategoryNavBlockComponent implements OnInit {
   @Input() categories$!: Observable<CategoryModel[]>;
 
   private _trigger?: MatMenuTrigger;
 
-  constructor(private categoryService: GoodsService, private store: Store<AppState>, private router: Router) { }
+  constructor(
+    private categoryService: GoodsService,
+    private store: Store<AppState>,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.categories$ = this.store.select((state) => state.categories.categories);
+    this.categories$ = this.store.select(
+      (state) => state.categories.categories
+    );
   }
 
   getSubcategories(id: string): Observable<SubcategoryModel[]> {
@@ -29,11 +35,11 @@ export class CategoryNavBlockComponent implements OnInit {
       map((array) => {
         return array.find((item) => item.id === id)?.subCategories || [];
       })
-    )
+    );
   }
 
   openMenu(trigger: MatMenuTrigger): void {
-    if (this._trigger){
+    if (this._trigger) {
       this._trigger.closeMenu();
     }
     this._trigger = trigger;

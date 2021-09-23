@@ -9,14 +9,19 @@ import { AuthorizationService } from '../../services/authorization.service';
 @Component({
   selector: 'app-register-login-dialog',
   templateUrl: './register-login-dialog.component.html',
-  styleUrls: ['./register-login-dialog.component.scss']
+  styleUrls: ['./register-login-dialog.component.scss'],
 })
 export class RegisterLoginDialogComponent implements OnDestroy {
   @Input() login = '';
+
   @Input() password = '';
+
   @Input() firstName = '';
+
   @Input() lastName = '';
+
   @Input() newLogin = '';
+
   @Input() newPassword = '';
 
   subscription = new Subscription();
@@ -24,7 +29,8 @@ export class RegisterLoginDialogComponent implements OnDestroy {
   constructor(
     public dialogRef: MatDialogRef<RegisterLoginDialogComponent>,
     private userService: AuthorizationService,
-    private store: Store<AppState>) {}
+    private store: Store<AppState>
+  ) {}
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
@@ -36,19 +42,28 @@ export class RegisterLoginDialogComponent implements OnDestroy {
 
   logIn(): void {
     this.subscription.add(
-      this.userService.loginUser(this.login, this.password).subscribe(token => {
-        this.store.dispatch(getUser({token}));
-      }));
+      this.userService
+        .loginUser(this.login, this.password)
+        .subscribe((token) => {
+          this.store.dispatch(getUser({ token }));
+        })
+    );
     this.dialogRef.close();
   }
 
   register(): void {
     this.subscription.add(
-      this.userService.registerUser(
-        this.firstName, this.lastName, this.newLogin, this.newPassword
-        ).subscribe(token => {
-          this.store.dispatch(getUser({token}));
-        }));
-      this.dialogRef.close();
+      this.userService
+        .registerUser(
+          this.firstName,
+          this.lastName,
+          this.newLogin,
+          this.newPassword
+        )
+        .subscribe((token) => {
+          this.store.dispatch(getUser({ token }));
+        })
+    );
+    this.dialogRef.close();
   }
 }

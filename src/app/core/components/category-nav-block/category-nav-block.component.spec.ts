@@ -8,9 +8,8 @@ describe('CategoryNavBlockComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CategoryNavBlockComponent ]
-    })
-    .compileComponents();
+      declarations: [CategoryNavBlockComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

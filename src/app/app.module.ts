@@ -21,7 +21,7 @@ import { CanNavigateGuard } from './core/guards/can-navigate.guard';
     BrowserAnimationsModule,
     CoreModule,
     StoreModule.forRoot(reducer),
-    EffectsModule.forRoot([CategoriesEffects, UserEffects])
+    EffectsModule.forRoot([CategoriesEffects, UserEffects]),
   ],
   providers: [CanNavigateGuard],
   bootstrap: [AppComponent],

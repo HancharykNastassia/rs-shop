@@ -12,46 +12,64 @@ import { GoodsService } from '../../services/goods.service';
 @Component({
   selector: 'app-category-page',
   templateUrl: './category-page.component.html',
-  styleUrls: ['./category-page.component.scss']
+  styleUrls: ['./category-page.component.scss'],
 })
 export class CategoryPageComponent implements OnInit, OnDestroy {
   @Input() goods$ = new Observable<ItemModel[]>();
+
   @Input() categoryName?: Observable<CategoryModel | undefined>;
+
   @Input() subcategoryName?: Observable<string | undefined>;
+
   @Input() sortCriteria?: SortCriteria;
+
   @Input() sortIsAsc?: boolean;
 
   goods!: ItemModel[];
+
   subscription!: Subscription;
+
   category!: string;
+
   subcategory?: string;
+
   itemsReqCount = 10;
+
   reqStartPosition = 0;
+
   sortBy?: string;
 
   constructor(
     private dataService: GoodsService,
     private route: ActivatedRoute,
-    private store: Store<AppState>) { }
+    private store: Store<AppState>
+  ) {}
 
   ngOnInit(): void {
-    this.subscription = this.route.queryParams.subscribe(params => {
+    this.subscription = this.route.queryParams.subscribe((params) => {
       this.reqStartPosition = 0;
-      this.category = params['category'],
-      this.subcategory = params['subcategory']
-      this.goods$ = this.dataService.getGoodsFrom(
-        this.category, this.subcategory, this.reqStartPosition, this.itemsReqCount
-        ).pipe(map((item) => this.goods = item));
+      (this.category = params.category),
+        (this.subcategory = params.subcategory);
+      this.goods$ = this.dataService
+        .getGoodsFrom(
+          this.category,
+          this.subcategory,
+          this.reqStartPosition,
+          this.itemsReqCount
+        )
+        .pipe(map((item) => (this.goods = item)));
       this.categoryName = this.store.select((state) =>
-      state.categories.categories.find(cat => cat.id === this.category)
-    );
-    if (this.subcategory) {
-      this.subcategoryName = this.categoryName.pipe(
-        map(item => {
-          return item?.subCategories.find(sub => sub.id === this.subcategory)?.name;
-        })
-      )
-    }
+        state.categories.categories.find((cat) => cat.id === this.category)
+      );
+      if (this.subcategory) {
+        this.subcategoryName = this.categoryName.pipe(
+          map((item) => {
+            return item?.subCategories.find(
+              (sub) => sub.id === this.subcategory
+            )?.name;
+          })
+        );
+      }
     });
   }
 
@@ -92,21 +110,25 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
       this.itemsReqCount,
       this.sortBy,
       this.sortIsAsc
-    )
+    );
   }
 
   showMore() {
-    this.reqStartPosition+=10;
-    this.goods$ = this.dataService.getGoodsFrom(
-      this.category,
-      this.subcategory,
-      this.reqStartPosition,
-      this.itemsReqCount,
-      this.sortBy,
-      !this.sortIsAsc
-    ).pipe(mergeScan((acc, item) => {
-      return of([...acc, ...item]);
-    }, this.goods),
-    map((item) => this.goods = item));
+    this.reqStartPosition += 10;
+    this.goods$ = this.dataService
+      .getGoodsFrom(
+        this.category,
+        this.subcategory,
+        this.reqStartPosition,
+        this.itemsReqCount,
+        this.sortBy,
+        !this.sortIsAsc
+      )
+      .pipe(
+        mergeScan((acc, item) => {
+          return of([...acc, ...item]);
+        }, this.goods),
+        map((item) => (this.goods = item))
+      );
   }
 }

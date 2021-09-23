@@ -8,9 +8,8 @@ describe('CartCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CartCardComponent ]
-    })
-    .compileComponents();
+      declarations: [CartCardComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

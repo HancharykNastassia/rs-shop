@@ -10,32 +10,42 @@ import { GoodsService } from '../../services/goods.service';
 @Component({
   selector: 'app-item-card',
   templateUrl: './item-card.component.html',
-  styleUrls: ['./item-card.component.scss']
+  styleUrls: ['./item-card.component.scss'],
 })
 export class ItemCardComponent implements OnInit, OnDestroy {
   @Input() item!: ItemModel;
 
-  subscrition= new Subscription();
+  subscrition = new Subscription();
+
   ratingArray?: unknown[];
+
   isInChart$!: Observable<boolean>;
+
   isInFavorite$!: Observable<boolean>;
 
-  constructor(private dataService: GoodsService, private store: Store<AppState>) {}
+  constructor(
+    private dataService: GoodsService,
+    private store: Store<AppState>
+  ) {}
 
   ngOnInit(): void {
     this.ratingArray = new Array(this.item.rating);
-    this.isInChart$ = this.store.select((state) => state.user.user?.cart).pipe(
-      map(ids => {
-        if (ids) return Boolean(ids?.find(id => id === this.item.id));
+    this.isInChart$ = this.store
+      .select((state) => state.user.user?.cart)
+      .pipe(
+        map((ids) => {
+          if (ids) return Boolean(ids?.find((id) => id === this.item.id));
           return false;
-      })
-    );
-    this.isInFavorite$ = this.store.select((state) => state.user.user?.favorites).pipe(
-      map(ids => {
-        if (ids) return Boolean(ids?.find(id => id === this.item.id));
+        })
+      );
+    this.isInFavorite$ = this.store
+      .select((state) => state.user.user?.favorites)
+      .pipe(
+        map((ids) => {
+          if (ids) return Boolean(ids?.find((id) => id === this.item.id));
           return false;
-      })
-    );
+        })
+      );
   }
 
   ngOnDestroy(): void {
@@ -43,14 +53,18 @@ export class ItemCardComponent implements OnInit, OnDestroy {
   }
 
   addItemToChart(id: string) {
-    this.subscrition.add(this.dataService.addItemToChart(id).subscribe((res) => {
-      if (res) this.store.dispatch(getUserChanges());
-    }));
+    this.subscrition.add(
+      this.dataService.addItemToChart(id).subscribe((res) => {
+        if (res) this.store.dispatch(getUserChanges());
+      })
+    );
   }
 
   addItemToFavorites(id: string) {
-    this.subscrition.add(this.dataService.addItemToFavorites(id).subscribe((res) => {
-      if (res) this.store.dispatch(getUserChanges());
-    }))
+    this.subscrition.add(
+      this.dataService.addItemToFavorites(id).subscribe((res) => {
+        if (res) this.store.dispatch(getUserChanges());
+      })
+    );
   }
 }

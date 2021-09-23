@@ -10,42 +10,53 @@ import { GoodsService } from '../../services/goods.service';
 @Component({
   selector: 'app-favorite-card',
   templateUrl: './favorite-card.component.html',
-  styleUrls: ['./favorite-card.component.scss']
+  styleUrls: ['./favorite-card.component.scss'],
 })
 export class FavoriteCardComponent implements OnInit, OnDestroy {
   @Input() item!: ItemModel;
 
   ratingArray?: unknown[];
-  subscription = new Subscription()
+
+  subscription = new Subscription();
+
   isInChart$!: Observable<boolean>;
 
-  constructor(private dataService: GoodsService, private store: Store<AppState>) {}
+  constructor(
+    private dataService: GoodsService,
+    private store: Store<AppState>
+  ) {}
 
-  ngOnInit():void {
+  ngOnInit(): void {
     this.ratingArray = new Array(this.item.rating);
-    this.isInChart$ = this.store.select((state) => state.user.user?.cart).pipe(
-      map(ids => {
-        if (ids) return Boolean(ids?.find(id => id === this.item.id));
+    this.isInChart$ = this.store
+      .select((state) => state.user.user?.cart)
+      .pipe(
+        map((ids) => {
+          if (ids) return Boolean(ids?.find((id) => id === this.item.id));
           return false;
-      })
-    );
+        })
+      );
   }
 
-  ngOnDestroy():void {
+  ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
   addItemToChart(): void {
-    this.subscription.add(this.dataService.addItemToChart(this.item.id).subscribe(res => {
-      if (res) this.store.dispatch(getUserChanges());
-    }));
-  }
-
-  removeFromFavorites():void {
     this.subscription.add(
-      this.dataService.removeItemFromFavorites(this.item.id).subscribe(res => {
+      this.dataService.addItemToChart(this.item.id).subscribe((res) => {
         if (res) this.store.dispatch(getUserChanges());
       })
-    )
+    );
+  }
+
+  removeFromFavorites(): void {
+    this.subscription.add(
+      this.dataService
+        .removeItemFromFavorites(this.item.id)
+        .subscribe((res) => {
+          if (res) this.store.dispatch(getUserChanges());
+        })
+    );
   }
 }

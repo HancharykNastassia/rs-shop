@@ -1,6 +1,6 @@
-import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of} from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { CategoryModel } from '../models/category-models';
 import { ItemModel } from '../models/item-models';
@@ -8,17 +8,19 @@ import { Order, OrderDetails } from '../models/user';
 import { AuthorizationService } from './authorization.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GoodsService {
-  host = "http://localhost:3004/";
+  host = 'http://localhost:3004/';
 
   constructor(private http: HttpClient, private auth: AuthorizationService) {}
 
   searchItem(q: string): Observable<ItemModel[]> {
-    return q ? this.http.get<ItemModel[]>(`${this.host}goods/search`,{
-      params: new HttpParams().set("text", q),
-    }) : of(<ItemModel[]>[]);
+    return q
+      ? this.http.get<ItemModel[]>(`${this.host}goods/search`, {
+          params: new HttpParams().set('text', q),
+        })
+      : of(<ItemModel[]>[]);
   }
 
   getCategoriesList(): Observable<CategoryModel[]> {
@@ -26,30 +28,31 @@ export class GoodsService {
   }
 
   getGoodsFrom(
-  category: string,
-  subcategory?: string,
-  startPosition?: number,
-  countNumber?: number,
-  sortBy?: string,
-  reverse?: boolean): Observable<ItemModel[]> {
+    category: string,
+    subcategory?: string,
+    startPosition?: number,
+    countNumber?: number,
+    sortBy?: string,
+    reverse?: boolean
+  ): Observable<ItemModel[]> {
     let path = `${this.host}goods/category/${category}`;
     if (subcategory) {
       path = `${path}/${subcategory}`;
     }
     let params: HttpParams | undefined;
-    if (typeof(startPosition) === 'number') {
+    if (typeof startPosition === 'number') {
       params = new HttpParams().set('start', startPosition);
     }
-    if (typeof(countNumber) === 'number') {
+    if (typeof countNumber === 'number') {
       params = (params || new HttpParams()).set('count', countNumber);
     }
     if (sortBy) {
       params = (params || new HttpParams()).set('sortBy', sortBy);
     }
-    if (typeof(reverse) === "boolean") {
-      params= (params || new HttpParams()).set('reverse', reverse);
+    if (typeof reverse === 'boolean') {
+      params = (params || new HttpParams()).set('reverse', reverse);
     }
-    return this.http.get<ItemModel[]>(path, {params});
+    return this.http.get<ItemModel[]>(path, { params });
   }
 
   getItemInfo(id?: string): Observable<ItemModel> {
@@ -62,14 +65,18 @@ export class GoodsService {
   addItemToChart(id: string): Observable<boolean> {
     return this.auth.checkLocalStroage().pipe(
       switchMap((token) => {
-        return this.http.post(`${this.host}users/cart`, {
-          "id": id,
-        }, {
-          headers: new HttpHeaders(`Authorization: Bearer ${token}`),
-          observe:'response',
-        }).pipe(
-          map(res => res.ok)
-        )
+        return this.http
+          .post(
+            `${this.host}users/cart`,
+            {
+              id: id,
+            },
+            {
+              headers: new HttpHeaders(`Authorization: Bearer ${token}`),
+              observe: 'response',
+            }
+          )
+          .pipe(map((res) => res.ok));
       })
     );
   }
@@ -77,13 +84,13 @@ export class GoodsService {
   removeItemFromChart(id: string): Observable<boolean> {
     return this.auth.checkLocalStroage().pipe(
       switchMap((token) => {
-        return this.http.delete(`${this.host}users/cart`, {
-          headers: new HttpHeaders(`Authorization: Bearer ${token}`),
-          params: new HttpParams().set("id", id),
-          observe:'response',
-        }).pipe(
-          map(res => res.ok)
-        )
+        return this.http
+          .delete(`${this.host}users/cart`, {
+            headers: new HttpHeaders(`Authorization: Bearer ${token}`),
+            params: new HttpParams().set('id', id),
+            observe: 'response',
+          })
+          .pipe(map((res) => res.ok));
       })
     );
   }
@@ -91,12 +98,12 @@ export class GoodsService {
   makeOrder(order: Order): Observable<boolean> {
     return this.auth.checkLocalStroage().pipe(
       switchMap((token) => {
-        return this.http.post(`${this.host}users/order`, order,{
-          headers: new HttpHeaders(`Authorization: Bearer ${token}`),
-          observe:'response',
-        }).pipe(
-          map(res => res.ok)
-        )
+        return this.http
+          .post(`${this.host}users/order`, order, {
+            headers: new HttpHeaders(`Authorization: Bearer ${token}`),
+            observe: 'response',
+          })
+          .pipe(map((res) => res.ok));
       })
     );
   }
@@ -104,29 +111,33 @@ export class GoodsService {
   cancelOrder(id: string): Observable<boolean> {
     return this.auth.checkLocalStroage().pipe(
       switchMap((token) => {
-        return this.http.delete(`${this.host}users/order`,{
-          headers: new HttpHeaders(`Authorization: Bearer ${token}`),
-          params: new HttpParams().set("id", id),
-          observe:'response',
-        }).pipe(
-          map(res => res.ok)
-        )
+        return this.http
+          .delete(`${this.host}users/order`, {
+            headers: new HttpHeaders(`Authorization: Bearer ${token}`),
+            params: new HttpParams().set('id', id),
+            observe: 'response',
+          })
+          .pipe(map((res) => res.ok));
       })
     );
   }
 
-  changeOrderDetais(id: string, details: OrderDetails): Observable<boolean>{
+  changeOrderDetais(id: string, details: OrderDetails): Observable<boolean> {
     return this.auth.checkLocalStroage().pipe(
       switchMap((token) => {
-        return this.http.put(`${this.host}users/order`,{
-          "id": id,
-          "details": details,
-        },{
-          headers: new HttpHeaders(`Authorization: Bearer ${token}`),
-          observe:'response',
-        }).pipe(
-          map(res => res.ok)
-        )
+        return this.http
+          .put(
+            `${this.host}users/order`,
+            {
+              id: id,
+              details: details,
+            },
+            {
+              headers: new HttpHeaders(`Authorization: Bearer ${token}`),
+              observe: 'response',
+            }
+          )
+          .pipe(map((res) => res.ok));
       })
     );
   }
@@ -134,28 +145,32 @@ export class GoodsService {
   addItemToFavorites(id: string): Observable<boolean> {
     return this.auth.checkLocalStroage().pipe(
       switchMap((token) => {
-        return this.http.post(`${this.host}users/favorites`, {
-          "id": id,
-        }, {
-          headers: new HttpHeaders(`Authorization: Bearer ${token}`),
-          observe:'response',
-        }).pipe(
-          map(res => res.ok)
-        )
+        return this.http
+          .post(
+            `${this.host}users/favorites`,
+            {
+              id: id,
+            },
+            {
+              headers: new HttpHeaders(`Authorization: Bearer ${token}`),
+              observe: 'response',
+            }
+          )
+          .pipe(map((res) => res.ok));
       })
-    )
+    );
   }
 
   removeItemFromFavorites(id: string): Observable<boolean> {
     return this.auth.checkLocalStroage().pipe(
       switchMap((token) => {
-        return this.http.delete(`${this.host}users/favorites`, {
-          headers: new HttpHeaders(`Authorization: Bearer ${token}`),
-          params: new HttpParams().set("id", id),
-          observe:'response',
-        }).pipe(
-          map(res => res.ok)
-        )
+        return this.http
+          .delete(`${this.host}users/favorites`, {
+            headers: new HttpHeaders(`Authorization: Bearer ${token}`),
+            params: new HttpParams().set('id', id),
+            observe: 'response',
+          })
+          .pipe(map((res) => res.ok));
       })
     );
   }

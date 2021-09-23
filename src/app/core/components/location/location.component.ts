@@ -14,5 +14,6 @@ export class LocationComponent {
     { value: '4', viewValue: 'Mogilev' },
     { value: '5', viewValue: 'Brest' },
   ];
+
   selected = { value: '0', viewValue: 'Minsk' };
 }

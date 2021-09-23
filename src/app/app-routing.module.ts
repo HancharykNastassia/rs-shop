@@ -10,27 +10,36 @@ import { OrderPageComponent } from './core/pages/order-page/order-page.component
 
 const routes: Routes = [
   {
-    path: '', component: MainComponent,
+    path: '',
+    component: MainComponent,
   },
   {
-    path: 'category', component: CategoryPageComponent,
+    path: 'category',
+    component: CategoryPageComponent,
   },
   {
-    path: 'details', component: DetailsPageComponent
+    path: 'details',
+    component: DetailsPageComponent,
   },
   {
-    path: 'chart', component: ChartComponent, canActivate: [CanNavigateGuard],
+    path: 'chart',
+    component: ChartComponent,
+    canActivate: [CanNavigateGuard],
   },
   {
-    path: 'favorites', component: FavotirePageComponent, canActivate: [CanNavigateGuard],
+    path: 'favorites',
+    component: FavotirePageComponent,
+    canActivate: [CanNavigateGuard],
   },
   {
-    path: 'order-list', component: OrderPageComponent, canActivate: [CanNavigateGuard],
+    path: 'order-list',
+    component: OrderPageComponent,
+    canActivate: [CanNavigateGuard],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
