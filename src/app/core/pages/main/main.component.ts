@@ -14,8 +14,36 @@ import { GoodsService } from '../../services/goods.service';
 })
 export class MainComponent implements OnInit {
   @Input() firstSlides$!: Observable<ItemModel[]>;
+  @Input() secondSlides$!: Observable<ItemModel[][]>;
 
   firstOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: false,
+    touchDrag: false,
+    pullDrag: false,
+    dots: true,
+    navSpeed: 700,
+    responsive: {
+      0: {
+        items: 1,
+      },
+      400: {
+        items: 1,
+      },
+      740: {
+        items: 1,
+      },
+      940: {
+        items: 1,
+      },
+    },
+    nav: false,
+    autoplay: true,
+    autoplayTimeout: 7000,
+    autoplaySpeed: 700,
+  };
+
+  secondOptions: OwlOptions = {
     loop: true,
     mouseDrag: false,
     touchDrag: false,
@@ -43,9 +71,14 @@ export class MainComponent implements OnInit {
 
   ngOnInit(): void {
     this.firstSlides$ = this.store.select((state) => state.categories.categories).pipe(
-      switchMap(cats => forkJoin(cats.map(cat => this.dataService.getGoodsFrom(cat.id, undefined, undefined, 2).pipe(
+      switchMap(cats => forkJoin(cats.map(cat => this.dataService.getGoodsFrom(cat.id, undefined, 0, 2).pipe(
         map(item => item[0].imageUrls[0] ? item[0] : item[1])
       ))))
+    );
+    this.secondSlides$ = this.store.select((state) => state.categories.categories).pipe(
+      switchMap(cats => forkJoin(cats.map((cat) => this.dataService.getGoodsFrom(
+        cat.id, undefined, 0, 6, 'rating', true)
+      )))
     )
   }
 }
