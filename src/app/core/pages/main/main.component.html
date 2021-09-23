@@ -1,1 +1,13 @@
-<p>main works!</p>
+<owl-carousel-o [options]="firstOptions">
+  <ng-container *ngFor="let slide of (firstSlides$ | async)">
+    <ng-template carouselSlide>
+      <div class="slider-one">
+        <img class="slider-one-img" [src]="slide.imageUrls[0] || 'assets/images/no-photo.png'" alt="photo">
+        <div class="slider-one-text-container">
+          <p class="slider-one-text">{{slide.name}}</p>
+          <p class="slider-one-text-percent">%</p>
+        </div>
+      </div>
+    </ng-template>
+  </ng-container>
+</owl-carousel-o>

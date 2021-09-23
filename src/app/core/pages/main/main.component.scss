@@ -1,0 +1,32 @@
+@import "../../../../variables";
+
+.slider{
+  &-one{
+    display: flex;
+    justify-content: space-around;
+    padding: $std-padding;
+    &-img{
+      height: 300px;
+      width: auto !important;
+      overflow: hidden;
+    }
+    &-text {
+      font-size: 36px;
+      line-height: 40px;
+      font-weight: bold;
+      color: $black-color;
+      &-container {
+        position: relative;
+        width: 50%;
+      }
+      &-percent {
+        position: absolute;
+        bottom: 20%;
+        left: 25%;
+        font-size: 100px;
+        font-weight: bold;
+        color: $red-color;
+      }
+    }
+  }
+}
