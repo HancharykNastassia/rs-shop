@@ -3,6 +3,7 @@
 .nav-block {
   &_container{
     display: flex;
+    align-items: center;
     justify-content: space-around;
   }
 
@@ -46,4 +47,9 @@
 .user-name{
   font-weight: bold;
   color: $purple-color;
+}
+
+.logo-image {
+  width: 300px;
+  border-radius: $std-border-radius;
 }

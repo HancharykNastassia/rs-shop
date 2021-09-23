@@ -13,8 +13,8 @@
   {{category.name}}
   </button>
 </div>
-<mat-menu #subs="matMenu">
-  <span (mouseout)="closeMenu()">
+<mat-menu #subs="matMenu" xPosition="after">
+  <span (mouseleave)="closeMenu()">
     <ng-template matMenuContent let-cat="cat">
       <p
       mat-menu-item

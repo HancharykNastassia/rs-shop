@@ -25,7 +25,7 @@
   margin: 0 $std-margin;
   width: 22px;
   height: 22px;
-  svg {
+  .viber-icon {
     padding: 1px;
     background-color: $white-color;
     border-radius: $std-border-radius;
@@ -33,7 +33,15 @@
 }
 
 .A1{
+  margin: $min-margin;
+  padding: 1px;
   color: $red-color;
   font-weight: bold;
+}
+
+.life {
+  margin-right: 30px;
+  font-weight: bold;
+  color: $black-color;
 }
 
