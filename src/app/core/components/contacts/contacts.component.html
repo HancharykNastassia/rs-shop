@@ -1,0 +1,37 @@
+<div class="contacts-container">
+  <p class="contacts_text">
+    <span class="viber-container">
+      <mat-icon class="viber-icon" svgIcon='viber'></mat-icon>
+    </span>
+    Viber
+  </p>
+  <p class="contacts_text"><span class="A1"> A1 </span> +375 29 302 10 21</p>
+  <button
+  class="contacts_menue white-button"
+  mat-stroked-button color="primary"
+  [matMenuTriggerFor]="menu">Больше контактов</button>
+</div>
+<mat-menu #menu="matMenu">
+  <p mat-menu-item> <span class="life">:)</span> +375 25 502 10 21</p>
+  <p mat-menu-item>
+    <mat-icon>phone</mat-icon>
+    +375 17 302 10 21
+  </p>
+  <p mat-menu-item>
+    <mat-icon svgIcon="telegram"></mat-icon>
+    Telegram
+  </p>
+  <p mat-menu-item>
+    <mat-icon>mail_outline</mat-icon>
+    Почта
+  </p>
+  <p mat-menu-item>
+    <mat-icon>phone_in_talk</mat-icon>
+    Заказать звонок
+  </p>
+  <p mat-menu-item>
+    <mat-icon>chat</mat-icon>
+    Написать нам
+  </p>
+</mat-menu>
+

@@ -1,0 +1,55 @@
+@import '../../../../variables';
+
+.nav-block {
+  &_container{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  &_input {
+    padding: $min-padding;
+    width: 80%;
+    border-radius: $std-border-radius;
+
+    &_container {
+      display: flex;
+      align-items: center;
+      flex-grow: 0.7;
+    }
+  }
+
+  &_button{
+    margin: $std-margin;
+
+    &_container {
+      display: flex;
+    }
+  }
+}
+.white-button{
+  background-color: $white-color;
+}
+
+.account{
+  &-enter {
+    display: flex;
+    align-items: center;
+  }
+  &-item{
+    margin: $std-margin;
+  }
+  &-icon {
+    font-size: 30px;
+  }
+}
+
+.user-name{
+  font-weight: bold;
+  color: $purple-color;
+}
+
+.logo-image {
+  width: 300px;
+  border-radius: $std-border-radius;
+}

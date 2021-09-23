@@ -1,0 +1,42 @@
+<div class="detail-conteainer">
+  <h3 class="detail-title">{{(item | async)?.name}}</h3>
+  <div>
+    <owl-carousel-o class="slider-container" [options]="owlOptions">
+      <ng-container *ngFor="let slide of ((item | async)?.imageUrls || ['assets/images/no-photo.png'])">
+        <ng-template carouselSlide>
+          <div class="slider-image-container">
+            <mat-icon
+            *ngIf="(item | async)?.rating === 5"
+            class="slider-icon">
+            local_fire_department
+            </mat-icon>
+            <img class="slider-image" [src]="slide" alt="photo">
+          </div>
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+  </div>
+  <div>
+    <button
+    class="detail-button"
+    mat-raised-button
+    color="primary"
+    [disabled]="isInChart$ | async"
+    (click)="addToChart()">
+    В Корзину
+    </button>
+    <button
+    class="detail-button"class="detail-button"
+    mat-raised-button
+    color="accent"
+    [disabled]="isInFavorite$ | async"
+    (click)="addToFavorites()">
+    В Избранное
+    </button>
+  </div>
+  <div class="detail-description">
+    <h5 class="detail-description-title">Описание</h5>
+    <p>{{(item | async)?.description}}</p>
+  </div>
+</div>
+

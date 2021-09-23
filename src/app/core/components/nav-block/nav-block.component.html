@@ -1,0 +1,76 @@
+
+<div class="nav-block_container">
+  <a href="#">
+    <img class="logo-image" src="assets/images/logo.jpg" alt="logo">
+  </a>
+  <div class="nav-block_input_container">
+    <button
+    class="nav-block_button"
+    mat-raised-button color="accent"
+    (click)="toggleCatalog()">
+    <mat-icon *ngIf="isCatalogOpen else openCatalog" aria-hidden="false">close</mat-icon>
+    <ng-template #openCatalog>
+      <mat-icon aria-hidden="false">expand_more</mat-icon>
+    </ng-template>
+    Каталог
+  </button>
+    <input
+    class="nav-block_input white-button"
+    matInput
+    placeholder="Search goods"
+    [formControl]="searchInputControl"
+    [matAutocomplete]="auto">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option *ngFor="let item of searchItems$ | async">
+        <p routerLink="/details" [queryParams]="{'id': item.id}">{{item.name}}</p>
+      </mat-option>
+      <mat-option *ngFor="let cat of searchCategories$ | async">
+        <p routerLink="/category" [queryParams]="{'category': cat.id}">{{cat.name}}</p>
+      </mat-option>
+    </mat-autocomplete>
+  </div>
+  <div class="nav-block_button_container">
+    <button
+    class="nav-block_button white-button"
+    mat-stroked-button
+    color="primary"
+    [matMenuTriggerFor]="menu">
+      <mat-icon *ngIf="(user$ | async); else login">logout</mat-icon>
+      <ng-template #login>
+        <mat-icon>login</mat-icon>
+      </ng-template>
+      Аккаунт
+    </button>
+    <mat-menu #menu="matMenu">
+      <div class="account-enter" mat-menu-item *ngIf="(user$ | async); else nouser">
+        <p class="account-item user-name">{{(user$ | async)?.firstName}} {{(user$ | async)?.lastName}}</p>
+        <button
+        class="account-item"
+        mat-stroked-button
+        color="primary"
+        (click)="logOut()">
+        Выход
+      </button>
+      </div>
+      <ng-template #nouser>
+        <div class="account-enter" mat-menu-item>
+          <mat-icon class="account-item account-icon" color="primary">account_circle</mat-icon>
+          <button
+          class="account-item"
+          mat-raised-button
+          color="primary"
+          (click)="openDialog()">
+          Войти
+          </button>
+        </div>
+      </ng-template>
+      <button mat-menu-item routerLink="/chart">Корзина {{(user$ | async)?.cart?.length || 0}}</button>
+      <button mat-menu-item routerLink="/favorites">Избранное {{(user$ | async)?.favorites?.length || 0}}</button>
+      <button mat-menu-item routerLink="/order-list">История заказов</button>
+    </mat-menu>
+    <button class="nav-block_button" mat-icon-button color="accent" routerLink="/chart">
+      <mat-icon>shopping_cart</mat-icon>
+      {{(user$ | async)?.cart?.length || 0}}
+    </button>
+  </div>
+</div>

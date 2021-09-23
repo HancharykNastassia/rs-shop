@@ -1,0 +1,67 @@
+@import "../../../../variables";
+
+.ordered{
+  &-header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+  }
+
+  &-text {
+    padding: $min-padding;
+  }
+
+  &-cost{
+    color: $dark-purple-color;
+  }
+  &-item {
+    display: flex;
+    justify-content: space-between;
+    padding: $std-padding;
+    border-bottom: 1px solid $black-color;
+
+    &-name {
+      color: $black-color;
+      font-weight: bold;
+    }
+
+    &-info{
+      font-size: 20px;
+      color: $dark-purple-color;
+      &-price {
+        font-weight: bold;
+      }
+    }
+  }
+  &-details{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    &-adress{
+      display: flex;
+    }
+    &-comment{
+      font-weight: bold;
+    }
+  }
+  &-comments {
+    width: 30%;
+    color: $black-color;
+  }
+}
+
+.last-panel {
+  display: flex;
+  justify-content: space-between;
+}
+
+.total-cost{
+  font-size: 24px;
+  font-weight: bold;
+  color: $red-color;
+}
+
+.btn {
+  margin: $std-margin;
+}

@@ -1,0 +1,16 @@
+<h2 class="title">Оформление заказа</h2>
+<p class="no-goods"
+*ngIf="(goods$ | async) === null; else notEmpty">
+В корзине нет товаров
+</p>
+<ng-template #notEmpty>
+  <app-cart-card
+(priceEmmiter)="countTotalPrice($event)"
+*ngFor="let item of (goods$ | async)"
+[item]="item">
+</app-cart-card>
+<p class="price">{{totalPrice | number:"1.2"}} BYN</p>
+<app-order-details-form
+[items]="getItemsAmmounts()">
+</app-order-details-form>
+</ng-template>

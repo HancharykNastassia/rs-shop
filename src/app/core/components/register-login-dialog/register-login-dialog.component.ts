@@ -1,0 +1,69 @@
+import { Component, Input, OnDestroy } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+import { getUser } from 'src/app/redux/actions/user-actions';
+import { AppState } from 'src/app/redux/state.models';
+import { AuthorizationService } from '../../services/authorization.service';
+
+@Component({
+  selector: 'app-register-login-dialog',
+  templateUrl: './register-login-dialog.component.html',
+  styleUrls: ['./register-login-dialog.component.scss'],
+})
+export class RegisterLoginDialogComponent implements OnDestroy {
+  @Input() login = '';
+
+  @Input() password = '';
+
+  @Input() firstName = '';
+
+  @Input() lastName = '';
+
+  @Input() newLogin = '';
+
+  @Input() newPassword = '';
+
+  subscription = new Subscription();
+
+  constructor(
+    public dialogRef: MatDialogRef<RegisterLoginDialogComponent>,
+    private userService: AuthorizationService,
+    private store: Store<AppState>
+  ) {}
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  logIn(): void {
+    this.subscription.add(
+      this.userService
+        .loginUser(this.login, this.password)
+        .subscribe((token) => {
+          this.store.dispatch(getUser({ token }));
+        })
+    );
+    this.dialogRef.close();
+  }
+
+  register(): void {
+    this.subscription.add(
+      this.userService
+        .registerUser(
+          this.firstName,
+          this.lastName,
+          this.newLogin,
+          this.newPassword
+        )
+        .subscribe((token) => {
+          this.store.dispatch(getUser({ token }));
+        })
+    );
+    this.dialogRef.close();
+  }
+}

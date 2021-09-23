@@ -1,0 +1,38 @@
+<div class="breadcrumbs">
+  <a
+  class="clear-link"
+  routerLink="/category"
+  [queryParams]="{'category': category}">
+    {{(this.categoryName | async)?.name}}
+  </a>
+  <span *ngIf="subcategory">
+   >
+   <a
+   class="clear-link"
+   routerLink="/category"
+   [queryParams]="{'category': category, 'subcategory': subcategory}">
+  {{this.subcategoryName | async}}
+  </a>
+  </span>
+</div>
+<h3 class="title">{{this.subcategory ? (this.subcategoryName | async) : (this.categoryName | async)?.name}}</h3>
+<p class="sort-text">
+  Сортировать по:
+  <span class="sort-btn" (click)="sortPrice()">цене</span>
+  <span class="sort-btn" (click)="sortPopularity()">популярности</span>
+</p>
+<div class="card-comtainer">
+  <app-item-card
+  *ngFor="let item of (goods$ | async)"
+  [item]="item">
+</app-item-card>
+</div>
+<div class="more">
+  <button
+  class="more-btn"
+  mat-stroked-button
+  color="primary"
+  (click)="showMore()">
+  Больше...
+  </button>
+</div>

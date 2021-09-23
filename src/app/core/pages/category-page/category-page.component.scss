@@ -1,0 +1,43 @@
+@import "../../../../variables";
+
+.breadcrumbs{
+  margin: $std-margin;
+  color: $gray-color;
+}
+.clear-link {
+  outline: none;
+  text-decoration: none;
+  color: $gray-color;
+}
+.card-comtainer {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.title {
+  margin: $std-margin;
+  font-size: 32px;
+  font-weight: bold;
+  color: $black-color;
+}
+
+.sort{
+  &-text {
+    margin: $std-margin;
+    color: $purple-color;
+  }
+  &-btn{
+    margin: $min-margin;
+    cursor: pointer;
+  }
+}
+
+.more{
+  display: flex;
+  justify-content: center;
+  &-btn {
+    margin: $std-margin;
+  }
+}

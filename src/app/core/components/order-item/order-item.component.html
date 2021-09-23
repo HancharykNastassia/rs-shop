@@ -1,0 +1,57 @@
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <div class="ordered-header">
+        <mat-panel-title>
+          {{id}}
+        </mat-panel-title>
+        <mat-panel-description>
+          <div class="ordered-details">
+            <div class="ordered-details-adress">
+              <p class="ordered-text">Адрес доставки: {{order.details.address}}</p>
+              <p class="ordered-text">Дата доставки : {{order.details.timeToDeliver}}</p>
+            </div>
+            <p class="ordered-text ordered-cost">Стоимость к оплате: {{totalCost | number:"1.2"}} BYN</p>
+          </div>
+        </mat-panel-description>
+      </div>
+    </mat-expansion-panel-header>
+    <div class="ordered-item" *ngFor="let item of (items$ | async)">
+      <p
+      class="ordered-item-name ordered-text"
+      routerLink="/details"
+      [queryParams]="{'id': item.id}">
+      {{item.name}}
+    </p>
+    <p class="ordered-item-info ordered-text">
+      <span
+      class="ordered-item-info-price">
+      {{item.price | number:"1.2"}} BYN</span>
+      X {{getItemAmmount(item.id)}}
+    </p>
+    </div>
+    <div class="last-panel">
+      <div class="ordered-text ordered-comments">
+        <p class="">Стоимость к оплате: <span class="total-cost">{{totalCost | number:"1.2"}} BYN</span></p>
+        <p class="ordered-details-comment">Комметнтарий к заказу:</p>
+        <p>{{order.details.comment}}</p>
+      </div>
+      <div>
+        <button
+        class="btn"
+        mat-raised-button
+        color="warn"
+        (click)="cancelOrder()"
+        routerLink='/order-list'>
+        Отменить заказ
+        </button>
+        <button
+        class="btn"
+        mat-button
+        color="primary"
+        (click)="changeOrderDetails()">
+        Изменить детали заказа
+      </button>
+      </div>
+    </div>
+  </mat-expansion-panel>
+

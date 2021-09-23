@@ -1,0 +1,29 @@
+<div class="catalog-container">
+  <ul class="catalog-cats no-dot-list">
+    <li
+    class="catalog-cat"
+    *ngFor="let cat of (categories$ | async)"
+    (mouseover)="showSubCategories(cat.id)"
+    routerLink="/category"
+    [queryParams]="{'category': cat.id}">
+    <mat-icon
+    color="warn"
+    aria-hidden="false">
+    {{getIcon(cat.id)}}
+  </mat-icon>
+      {{cat.name}}
+    </li>
+  </ul>
+  <div class="catalog-subcats">
+    <h3 class="catalog-title">{{getTitle() | async}}</h3>
+    <ul class="two-cols no-dot-list">
+      <li
+      class="catalog-subcat"
+      *ngFor="let subCat of (subCategories$ | async)"
+      routerLink="/category"
+      [queryParams]="{'category': chosenId , 'subcategory': subCat.id}">
+        {{subCat.name}}
+      </li>
+    </ul>
+  </div>
+</div>

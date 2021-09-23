@@ -1,0 +1,47 @@
+@import "../../../../variables";
+
+.contacts{
+  &-container {
+    display: flex;
+    align-items: stretch;
+    text-align: center;
+  }
+  &_text {
+    display: flex;
+    align-items: center;
+    margin: $big-margin $std-margin;
+    color: $white-color;
+  }
+  &_menue{
+    margin: $std-margin;
+  }
+}
+
+.white-button{
+  background-color: $white-color;
+}
+
+.viber-container {
+  margin: 0 $std-margin;
+  width: 22px;
+  height: 22px;
+  .viber-icon {
+    padding: 1px;
+    background-color: $white-color;
+    border-radius: $std-border-radius;
+  }
+}
+
+.A1{
+  margin: $min-margin;
+  padding: 1px;
+  color: $red-color;
+  font-weight: bold;
+}
+
+.life {
+  margin-right: 30px;
+  font-weight: bold;
+  color: $black-color;
+}
+

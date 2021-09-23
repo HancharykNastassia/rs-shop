@@ -1,0 +1,21 @@
+<div class="chart-card">
+  <div class="chart-image-container" routerLink="/details" [queryParams]="{'id': item.id}">
+    <img class="chart-image" [src]="item.imageUrls[0] || 'assets/images/no-photo.png'" alt="item photo">
+    <p class="chart-title">{{item.name}}</p>
+  </div>
+  <div class="chart-description">
+    <p>{{item.description}}</p>
+  </div>
+  <input
+  mat-input
+  type="number"
+  [(ngModel)]="multyplier"
+  min="1"
+  [max]="item.availableAmount"
+  (change)="priceEmmiter.emit({id: item.id, multyplier: multyplier})">
+  <p>Доставка: сегодня</p>
+  <div>
+    <p class="chart-price">{{(item.price * multyplier) | number:"1.2"}} BYN</p>
+  </div>
+  <button mat-button color="warn" (click)="removeItemFromChart()">Удалить из корзины</button>
+</div>

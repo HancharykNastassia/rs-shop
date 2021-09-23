@@ -1,0 +1,23 @@
+@import "../../../../variables";
+
+.dialog{
+  &-container {
+    display: flex;
+  }
+  &-part{
+    display: flex;
+    flex-direction: column;
+    margin: $big-margin;
+  }
+  &-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: $dark-purple-color;
+  }
+  &-btns{
+    display: flex;
+    justify-content: space-between;
+    margin: $big-margin;
+    width: 100%;
+  }
+}

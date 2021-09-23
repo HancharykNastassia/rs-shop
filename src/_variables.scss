@@ -1,0 +1,21 @@
+@import '~@angular/material/theming';
+
+$light-purple-color: mat-color($mat-purple, 100);
+$purple-color: mat-color($mat-purple, 500);
+$dark-purple-color: mat-color($mat-indigo, 500);
+$light-yellow-color: mat-color($mat-yellow, 200);
+$yellow-color: mat-color($mat-yellow, 600);
+$white-color: mat-color($mat-purple, 50);
+$black-color: mat-color($mat-indigo, 900);
+$gray-color: mat-color($mat-gray, 700);
+$red-color: mat-color($mat-red, 500);
+
+$std-border-radius: 5px;
+
+$min-margin: 5px;
+$std-margin: 10px;
+$big-margin: 20px;
+
+$min-padding: 10px;
+$std-padding: 20px;
+$big-padding: 40px;

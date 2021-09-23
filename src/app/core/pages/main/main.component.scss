@@ -1,0 +1,88 @@
+@import "../../../../variables";
+
+.title{
+  padding: $std-padding;
+  font-size: 20px;
+  font-weight: bold;
+  color: $black-color;
+}
+
+.slider{
+  &-one{
+    display: flex;
+    justify-content: space-around;
+    padding: $std-padding;
+    &-img{
+      height: 300px;
+      width: auto !important;
+      overflow: hidden;
+    }
+    &-text {
+      font-size: 36px;
+      line-height: 40px;
+      font-weight: bold;
+      color: $black-color;
+      &-container {
+        position: relative;
+        width: 50%;
+      }
+      &-percent {
+        position: absolute;
+        bottom: 20%;
+        left: 25%;
+        font-size: 100px;
+        font-weight: bold;
+        color: $red-color;
+      }
+    }
+  }
+  &-two{
+    &-container{
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: $std-padding;
+    }
+    &-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: $min-margin;
+      padding: $std-padding;
+      width: 25%;
+      position: relative;
+      background-color: $white-color;
+      border-radius: $std-border-radius;
+      &-price {
+        color: $red-color;
+      }
+    }
+    &-image{
+      padding: $std-padding;
+      height: 200px;
+      width: auto !important;
+      border-radius: $std-border-radius;
+      &-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        overflow-x: hidden;
+      }
+    }
+    &-text{
+      padding: $std-padding;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      color: $black-color;
+    }
+  }
+  &-icon {
+    position: absolute;
+    top: 20px;
+    right: 15%;
+    color: $red-color;
+    font-size: 60px;
+  }
+}

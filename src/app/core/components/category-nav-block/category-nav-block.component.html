@@ -1,0 +1,29 @@
+<div class="category-container">
+  <button
+  class="category-button"
+  mat-raised-button
+  color="primary"
+  *ngFor="let category of (categories$ | async)"
+  [matMenuTriggerFor]="subs"
+  [matMenuTriggerData]="{cat: category.id}"
+  #menuTrigger="matMenuTrigger"
+  (mouseenter)="openMenu(menuTrigger)"
+  routerLink="/category"
+  [queryParams]="{'category': category.id}">
+  {{category.name}}
+  </button>
+</div>
+<mat-menu #subs="matMenu" xPosition="after">
+  <span (mouseleave)="closeMenu()">
+    <ng-template matMenuContent let-cat="cat">
+      <p
+      mat-menu-item
+      *ngFor="let subCat of (getSubcategories(cat) | async)"
+      routerLink="/category"
+      [queryParams]="{'category': cat , 'subcategory': subCat.id}"
+      >
+      {{subCat.name}}
+      </p>
+    </ng-template>
+  </span>
+</mat-menu>
