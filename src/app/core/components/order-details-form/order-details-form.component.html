@@ -7,7 +7,8 @@
     [formControl]="nameInput"
     [errorStateMatcher]="matcher"
     required
-    [(ngModel)]="name">
+    [(ngModel)]="name"
+    name="name">
     <mat-error *ngIf="nameInput.hasError('minlength')">
     Слишком короткое имя
     </mat-error>
@@ -25,7 +26,8 @@
     [(ngModel)]="adress"
     [formControl]="adressInput"
     [errorStateMatcher]="matcher"
-    required>
+    required
+    name="adress">
     <mat-error *ngIf="adressInput.hasError('minlength')">
       Слишком короткий адрес
     </mat-error>
@@ -44,7 +46,8 @@
     [(ngModel)]="telNumber"
     [formControl]="telInput"
     [errorStateMatcher]="matcher"
-    required>
+    required
+    name="phone">
     <mat-error *ngIf="telInput.hasError('pattern')">
       Неверный формат ввода
     </mat-error>
@@ -59,7 +62,8 @@
     matInput
     [(ngModel)]="dateTime"
     [min]="currentDate"
-    required>
+    required
+    name="date">
     <mat-error *ngIf="dateInput.hasError('required')">
       Поле не может быть пустым
     </mat-error>
@@ -73,7 +77,8 @@
       matInput
       [(ngModel)]="comments"
       [formControl]="commentInput"
-      [errorStateMatcher]="matcher">
+      [errorStateMatcher]="matcher"
+      name="comments">
     </textarea>
     <mat-error *ngIf="commentInput.hasError('maxlength')">
       Слишком длинный комментарий

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -11,6 +11,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { CategoriesEffects } from './redux/effects/categories-effects';
 import { UserEffects } from './redux/effects/user-effects';
 import { CanNavigateGuard } from './core/guards/can-navigate.guard';
+import { HttpReqInterceptor } from './core/interceptors/http-req.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,7 +24,13 @@ import { CanNavigateGuard } from './core/guards/can-navigate.guard';
     StoreModule.forRoot(reducer),
     EffectsModule.forRoot([CategoriesEffects, UserEffects]),
   ],
-  providers: [CanNavigateGuard],
+  providers: [
+    CanNavigateGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpReqInterceptor,
+      multi: true,
+    }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

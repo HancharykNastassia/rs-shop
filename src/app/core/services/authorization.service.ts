@@ -8,8 +8,6 @@ import { User } from '../models/user';
   providedIn: 'root',
 })
 export class AuthorizationService {
-  host = 'http://localhost:3004/';
-
   constructor(private http: HttpClient) {}
 
   checkLocalStroage(): Observable<string | null> {
@@ -23,7 +21,7 @@ export class AuthorizationService {
     password: string
   ): Observable<string> {
     return this.http
-      .post<{ token: string }>(`${this.host}users/register`, {
+      .post<{ token: string }>(`users/register`, {
         firstName: name,
         lastName: lastName,
         login: login,
@@ -39,7 +37,7 @@ export class AuthorizationService {
 
   loginUser(login: string, password: string): Observable<string> {
     return this.http
-      .post<{ token: string }>(`${this.host}users/login`, {
+      .post<{ token: string }>(`users/login`, {
         login: login,
         password: password,
       })
@@ -59,7 +57,7 @@ export class AuthorizationService {
     if (!token || token.length === 0) {
       return of(undefined);
     }
-    return this.http.get<User>(`${this.host}users/userInfo`, {
+    return this.http.get<User>(`users/userInfo`, {
       headers: new HttpHeaders(`Authorization: Bearer ${token}`),
     });
   }

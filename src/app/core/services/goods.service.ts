@@ -11,20 +11,18 @@ import { AuthorizationService } from './authorization.service';
   providedIn: 'root',
 })
 export class GoodsService {
-  host = 'http://localhost:3004/';
-
   constructor(private http: HttpClient, private auth: AuthorizationService) {}
 
   searchItem(q: string): Observable<ItemModel[]> {
     return q
-      ? this.http.get<ItemModel[]>(`${this.host}goods/search`, {
+      ? this.http.get<ItemModel[]>(`goods/search`, {
           params: new HttpParams().set('text', q),
         })
       : of(<ItemModel[]>[]);
   }
 
   getCategoriesList(): Observable<CategoryModel[]> {
-    return this.http.get<CategoryModel[]>(`${this.host}categories`);
+    return this.http.get<CategoryModel[]>(`categories`);
   }
 
   getGoodsFrom(
@@ -35,7 +33,7 @@ export class GoodsService {
     sortBy?: string,
     reverse?: boolean
   ): Observable<ItemModel[]> {
-    let path = `${this.host}goods/category/${category}`;
+    let path = `goods/category/${category}`;
     if (subcategory) {
       path = `${path}/${subcategory}`;
     }
@@ -57,7 +55,7 @@ export class GoodsService {
 
   getItemInfo(id?: string): Observable<ItemModel> {
     if (id) {
-      return this.http.get<ItemModel>(`${this.host}goods/item/${id}`);
+      return this.http.get<ItemModel>(`goods/item/${id}`);
     }
     return of(<ItemModel>{});
   }
@@ -67,7 +65,7 @@ export class GoodsService {
       switchMap((token) => {
         return this.http
           .post(
-            `${this.host}users/cart`,
+            `users/cart`,
             {
               id: id,
             },
@@ -85,7 +83,7 @@ export class GoodsService {
     return this.auth.checkLocalStroage().pipe(
       switchMap((token) => {
         return this.http
-          .delete(`${this.host}users/cart`, {
+          .delete(`users/cart`, {
             headers: new HttpHeaders(`Authorization: Bearer ${token}`),
             params: new HttpParams().set('id', id),
             observe: 'response',
@@ -99,7 +97,7 @@ export class GoodsService {
     return this.auth.checkLocalStroage().pipe(
       switchMap((token) => {
         return this.http
-          .post(`${this.host}users/order`, order, {
+          .post(`users/order`, order, {
             headers: new HttpHeaders(`Authorization: Bearer ${token}`),
             observe: 'response',
           })
@@ -112,7 +110,7 @@ export class GoodsService {
     return this.auth.checkLocalStroage().pipe(
       switchMap((token) => {
         return this.http
-          .delete(`${this.host}users/order`, {
+          .delete(`users/order`, {
             headers: new HttpHeaders(`Authorization: Bearer ${token}`),
             params: new HttpParams().set('id', id),
             observe: 'response',
@@ -127,7 +125,7 @@ export class GoodsService {
       switchMap((token) => {
         return this.http
           .put(
-            `${this.host}users/order`,
+            `users/order`,
             {
               id: id,
               details: details,
@@ -147,7 +145,7 @@ export class GoodsService {
       switchMap((token) => {
         return this.http
           .post(
-            `${this.host}users/favorites`,
+            `users/favorites`,
             {
               id: id,
             },
@@ -165,7 +163,7 @@ export class GoodsService {
     return this.auth.checkLocalStroage().pipe(
       switchMap((token) => {
         return this.http
-          .delete(`${this.host}users/favorites`, {
+          .delete(`users/favorites`, {
             headers: new HttpHeaders(`Authorization: Bearer ${token}`),
             params: new HttpParams().set('id', id),
             observe: 'response',
