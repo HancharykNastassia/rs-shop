@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { getUserChanges } from 'src/app/redux/actions/user-actions';
 import { AppState } from 'src/app/redux/state.models';
 import { ItemModel } from '../../models/item-models';
@@ -16,11 +17,18 @@ export class FavoriteCardComponent implements OnInit, OnDestroy {
 
   ratingArray?: unknown[];
   subscription = new Subscription()
+  isInChart$!: Observable<boolean>;
 
   constructor(private dataService: GoodsService, private store: Store<AppState>) {}
 
   ngOnInit():void {
     this.ratingArray = new Array(this.item.rating);
+    this.isInChart$ = this.store.select((state) => state.user.user?.cart).pipe(
+      map(ids => {
+        if (ids) return Boolean(ids?.find(id => id === this.item.id));
+          return false;
+      })
+    );
   }
 
   ngOnDestroy():void {

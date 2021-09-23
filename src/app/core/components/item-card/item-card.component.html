@@ -1,6 +1,6 @@
 <div class="item-card">
   <div class="item-image-container">
-    <img class="item-image" [src]="item.imageUrls[0]" alt="item image">
+    <img class="item-image" [src]="item.imageUrls[0] || 'assets/images/no-photo.png'" alt="item image">
   </div>
   <h3 class="item-tilte" routerLink="/details" [queryParams]="{'id': item.id}">{{item.name}}</h3>
   <div class="item-info">

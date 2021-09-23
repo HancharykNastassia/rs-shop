@@ -1,6 +1,6 @@
 <div class="chart-card">
   <div class="chart-image-container" routerLink="/details" [queryParams]="{'id': item.id}">
-    <img class="chart-image" [src]="item.imageUrls[0]" alt="item photo">
+    <img class="chart-image" [src]="item.imageUrls[0] || 'assets/images/no-photo.png'" alt="item photo">
     <p class="chart-title">{{item.name}}</p>
   </div>
   <div class="chart-description">

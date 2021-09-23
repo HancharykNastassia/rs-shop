@@ -1,6 +1,6 @@
 <div class="card-container">
   <div class="card-image-container">
-    <img class="card-image" [src]="item.imageUrls[0]" alt="item photo">
+    <img class="card-image" [src]="item.imageUrls[0] || 'assets/images/no-photo.png'" alt="item photo">
   </div>
   <div class="card-info">
     <h2 routerLink="/details" [queryParams]="{'id': item.id}">{{item.name}}</h2>
@@ -13,7 +13,8 @@
       class="card-button"
       mat-raised-button
       color="primary"
-      (click)="addItemToChart()">
+      (click)="addItemToChart()"
+      [disabled]="isInChart$ | async">
       В корзину
       </button>
       <button

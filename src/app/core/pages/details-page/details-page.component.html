@@ -2,7 +2,7 @@
   <h3 class="detail-title">{{(item | async)?.name}}</h3>
   <div>
     <owl-carousel-o class="slider-container" [options]="owlOptions">
-      <ng-container *ngFor="let slide of (item | async)?.imageUrls">
+      <ng-container *ngFor="let slide of ((item | async)?.imageUrls || ['assets/images/no-photo.png'])">
         <ng-template carouselSlide>
           <div class="slider-image-container">
             <mat-icon
