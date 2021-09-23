@@ -1,13 +1,12 @@
 import { Component, Input, OnDestroy, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { getUserChanges } from 'src/app/redux/actions/user-actions';
 import { AppState } from 'src/app/redux/state.models';
-import { Order, OrderDetails, OrderedItem } from '../../models/user';
-import { OrderPageComponent } from '../../pages/order-page/order-page.component';
+import { OrderDetails, OrderedItem } from '../../models/user';
 import { GoodsService } from '../../services/goods.service';
 import { OrderedPopupComponent } from '../ordered-popup/ordered-popup.component';
 

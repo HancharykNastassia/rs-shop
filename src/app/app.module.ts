@@ -10,6 +10,7 @@ import { reducer } from './redux/reducers/app-reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { CategoriesEffects } from './redux/effects/categories-effects';
 import { UserEffects } from './redux/effects/user-effects';
+import { CanNavigateGuard } from './core/guards/can-navigate.guard';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +23,7 @@ import { UserEffects } from './redux/effects/user-effects';
     StoreModule.forRoot(reducer),
     EffectsModule.forRoot([CategoriesEffects, UserEffects])
   ],
-  providers: [],
+  providers: [CanNavigateGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
