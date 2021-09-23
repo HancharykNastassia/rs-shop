@@ -1,0 +1,31 @@
+@import "../../../../variables";
+
+.footer {
+  background-color: $purple-color;
+  &-contacts {
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid $white-color;
+    &-icon {
+      margin-right: $std-margin;
+    }
+  }
+  &-life {
+    font-weight: bold;
+    color: $black-color;
+  }
+
+  &-socials {
+    display: flex;
+    justify-content: center;
+    &-icons{
+      display: flex;
+      justify-content: space-around;
+      margin: $std-margin;
+      padding: $min-padding;
+      width: 20%;
+      background-color: $white-color;
+      border-radius: $std-border-radius;
+    }
+  }
+}

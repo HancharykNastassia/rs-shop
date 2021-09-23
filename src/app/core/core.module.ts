@@ -27,6 +27,7 @@ import { OrderItemComponent } from './components/order-item/order-item.component
 import { OrderPageComponent } from './pages/order-page/order-page.component';
 import { UpdateOrderDialogComponent } from './components/update-order-dialog/update-order-dialog.component';
 import { OrderDetailsFormComponent } from './components/order-details-form/order-details-form.component';
+import { FooterComponent } from './pages/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { OrderDetailsFormComponent } from './components/order-details-form/order
     OrderPageComponent,
     UpdateOrderDialogComponent,
     OrderDetailsFormComponent,
+    FooterComponent,
   ],
   imports: [
     FormsModule,
@@ -70,6 +72,7 @@ import { OrderDetailsFormComponent } from './components/order-details-form/order
     ChartComponent,
     FavotirePageComponent,
     OrderPageComponent,
+    FooterComponent,
   ],
 })
 export class CoreModule {}
