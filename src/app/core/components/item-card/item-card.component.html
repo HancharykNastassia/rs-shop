@@ -37,7 +37,7 @@
     class="item-button"
     mat-raised-button
     color="primary"
-    [disabled]="item.isInChart"
+    [disabled]="isInChart$ | async"
     (click)="addItemToChart(item.id)">
     В Корзину
     </button>
@@ -45,7 +45,7 @@
     class="item-button"
     mat-raised-button
     color="accent"
-    [disabled]="item.isFavourite"
+    [disabled]="isInFavorite$ | async"
     (click)="addItemToFavorites(item.id)">
     В Избранное
     </button>

@@ -11,6 +11,7 @@
 }
 .card-comtainer {
   display: flex;
+  justify-content: space-evenly;
   flex-wrap: wrap;
   align-items: stretch;
 }
@@ -30,5 +31,13 @@
   &-btn{
     margin: $min-margin;
     cursor: pointer;
+  }
+}
+
+.more{
+  display: flex;
+  justify-content: center;
+  &-btn {
+    margin: $std-margin;
   }
 }

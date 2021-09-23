@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Observable, Subscription } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 import { getUserChanges } from 'src/app/redux/actions/user-actions';
 import { AppState } from 'src/app/redux/state.models';
 import { ItemModel } from '../../models/item-models';
@@ -19,6 +19,8 @@ export class DetailsPageComponent implements OnInit, OnDestroy {
 
   subscription!: Subscription;
   id!: string;
+  isInChart$!: Observable<boolean>;
+  isInFavorite$!: Observable<boolean>;
 
   owlOptions: OwlOptions = {
     loop: true,
@@ -54,6 +56,22 @@ export class DetailsPageComponent implements OnInit, OnDestroy {
       this.item = this.dataService.getItemInfo(params['id']).pipe(
         tap(item => this.id = item.id)
       )
+    );
+    this.isInChart$ = this.store.select((state) => state.user.user?.cart).pipe(
+      switchMap(ids => this.item.pipe(
+          map(item => {
+            if (ids) return Boolean(ids.find((id) => id === item.id));
+            return false;
+          })
+        ))
+    );
+    this.isInFavorite$ = this.store.select((state) => state.user.user?.favorites).pipe(
+      switchMap(ids => this.item.pipe(
+        map(item => {
+          if (ids) return Boolean(ids.find((id) => id === item.id));
+          return false;
+        })
+      ))
     );
   }
 
